@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Leach | Independent eCommerce Director & Strategic Fixer | Centre Channel</title>
+    <meta name="description" content="I fix stalled growth and de-risk replatforming for £20M+ fashion, beauty and lifestyle brands. Ex-Missguided & Brainlabs. Independent eCommerce Director.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mark Leach | Independent eCommerce Director & Strategic Fixer">
+    <meta property="og:description" content="I fix stalled growth and de-risk replatforming for £20M+ fashion, beauty and lifestyle brands.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://centrechannel.com">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================
+           CSS VARIABLES - DESIGN SYSTEM
+        ======================================== */
+        :root {
+            /* Colours - Dark Palette */
+            --ink-black: #0a0a0a;
+            --deep-black: #141414;
+            --warm-black: #1a1918;
+            --charcoal: #2a2a2a;
+            --graphite: #3a3a3a;
+            
+            /* Colours - Light Palette */
+            --cream: #f5f2eb;
+            --warm-white: #faf9f7;
+            --stone: #e8e4dc;
+            --silver: #9a9a9a;
+            
+            /* Colours - Accent */
+            --brass: #b8976a;
+            --brass-light: #d4bc94;
+            --brass-dark: #96784d;
+            
+            /* Typography */
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            
+            /* Font Sizes */
+            --text-xs: 0.6875rem;
+            --text-sm: 0.8125rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 2rem;
+            --text-4xl: 2.5rem;
+            --text-5xl: 3rem;
+            --text-6xl: 4rem;
+            --text-7xl: 5rem;
+            
+            /* Spacing */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+            --space-7: 48px;
+            --space-8: 64px;
+            --space-9: 96px;
+            --space-10: 128px;
+            
+            /* Layout */
+            --max-width: 1200px;
+            --max-width-narrow: 800px;
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 400ms ease;
+        }
+        
+        /* ========================================
+           RESET & BASE
+        ======================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--cream);
+            background-color: var(--ink-black);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* ========================================
+           TYPOGRAPHY
+        ======================================== */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            line-height: 1.15;
+        }
+        
+        h1 {
+            font-size: var(--text-6xl);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: var(--text-4xl);
+            font-weight: 400;
+        }
+        
+        h3 {
+            font-size: var(--text-2xl);
+            font-weight: 500;
+        }
+        
+        .label {
+            font-family: var(--font-body);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--brass);
+        }
+        
+        .subtitle {
+            font-size: var(--text-lg);
+            color: var(--silver);
+            font-weight: 400;
+        }
+        
+        /* Italic emphasis for brass */
+        .emphasis {
+            font-style: italic;
+            color: var(--brass);
+        }
+        
+        /* ========================================
+           LAYOUT
+        ======================================== */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        .container--narrow {
+            max-width: var(--max-width-narrow);
+        }
+        
+        section {
+            padding: var(--space-9) 0;
+            position: relative;
+        }
+        
+        /* ========================================
+           NAVIGATION
+        ======================================== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--space-5) 0;
+            background: linear-gradient(to bottom, var(--ink-black) 0%, transparent 100%);
+            transition: background var(--transition-base);
+        }
+        
+        .nav.scrolled {
+            background: var(--ink-black);
+            border-bottom: 1px solid var(--charcoal);
+        }
+        
+        .nav__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .nav__logo svg {
+            width: 44px;
+            height: 44px;
+        }
+        
+        .nav__logo-text {
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--cream);
+            letter-spacing: 0.05em;
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .nav__logo-text {
+                display: block;
+            }
+        }
+        
+        .nav__links {
+            display: flex;
+            gap: var(--space-7);
+            list-style: none;
+        }
+        
+        .nav__links a {
+            font-size: var(--text-sm);
+            color: rgba(245, 242, 235, 0.7);
+            transition: color var(--transition-fast);
+        }
+        
+        .nav__links a:hover {
+            color: var(--cream);
+        }
+        
+        .nav__cta {
+            display: none;
+            font-size: var(--text-sm);
+            color: var(--brass);
+            transition: color var(--transition-fast);
+        }
+        
+        .nav__cta:hover {
+            color: var(--brass-light);
+        }
+        
+        @media (min-width: 768px) {
+            .nav__cta {
+                display: inline-flex;
+            }
+        }
+        
+        /* ========================================
+           BUTTONS & LINKS
+        ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-3) var(--space-6);
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid var(--brass);
+            background: transparent;
+            color: var(--brass);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn:hover {
+            background: var(--brass);
+            color: var(--ink-black);
+        }
+        
+        .btn--primary {
+            background: var(--brass);
+            color: var(--ink-black);
+        }
+        
+        .btn--primary:hover {
+            background: var(--brass-light);
+        }
+        
+        /* Link with expanding line */
+        .link-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-size: var(--text-sm);
+            color: var(--cream);
+            transition: color var(--transition-fast);
+        }
+        
+        .link-arrow::after {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--brass) 0%, transparent 100%);
+            transition: width var(--transition-base);
+        }
+        
+        .link-arrow:hover {
+            color: var(--brass);
+        }
+        
+        .link-arrow:hover::after {
+            width: 48px;
+        }
+        
+        /* ========================================
+           HERO SECTION
+        ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: var(--space-10);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Asymmetric brass gradient */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(ellipse at center, rgba(184, 151, 106, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            left: -20%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(ellipse at center, rgba(184, 151, 106, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero__content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+        
+        .hero__label {
+            margin-bottom: var(--space-5);
+        }
+        
+        .hero__title {
+            margin-bottom: var(--space-5);
+            line-height: 1.1;
+        }
+        
+        .hero__subtitle {
+            font-size: var(--text-xl);
+            color: rgba(245, 242, 235, 0.7);
+            margin-bottom: var(--space-4);
+            max-width: 700px;
+        }
+        
+        .hero__credentials {
+            font-size: var(--text-base);
+            color: var(--brass);
+            margin-bottom: var(--space-7);
+        }
+        
+        .hero__cta {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: var(--space-8);
+            right: var(--space-6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .scroll-indicator__text {
+            font-size: var(--text-xs);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(245, 242, 235, 0.5);
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        
+        .scroll-indicator__line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--brass) 0%, transparent 100%);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 1; transform: scaleY(1); }
+            50% { opacity: 0.5; transform: scaleY(0.8); }
+        }
+        
+        @media (max-width: 767px) {
+            .scroll-indicator {
+                display: none;
+            }
+        }
+        
+        /* ========================================
+           CREDENTIALS SECTION
+        ======================================== */
+        .credentials {
+            padding: var(--space-8) 0;
+            background: var(--deep-black);
+            border-top: 1px solid var(--charcoal);
+            border-bottom: 1px solid var(--charcoal);
+        }
+        
+        .credentials__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-6);
+        }
+        
+        @media (min-width: 768px) {
+            .credentials__grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: var(--space-8);
+            }
+        }
+        
+        .credential {
+            text-align: center;
+        }
+        
+        .credential__number {
+            font-family: var(--font-display);
+            font-size: var(--text-5xl);
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 1;
+            margin-bottom: var(--space-2);
+        }
+        
+        .credential__label {
+            font-size: var(--text-xs);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--brass);
+        }
+        
+        /* ========================================
+           TRUST SECTION
+        ======================================== */
+        .trust {
+            padding: var(--space-7) 0;
+            background: var(--ink-black);
+            border-bottom: 1px solid var(--charcoal);
+        }
+        
+        .trust__text {
+            text-align: center;
+            font-size: var(--text-sm);
+            color: var(--silver);
+        }
+        
+        .trust__brands {
+            color: rgba(245, 242, 235, 0.5);
+            letter-spacing: 0.05em;
+        }
+        
+        /* ========================================
+           PROBLEM SECTION
+        ======================================== */
+        .problem {
+            background: var(--ink-black);
+            position: relative;
+        }
+        
+        .problem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--charcoal) 50%, transparent 100%);
+        }
+        
+        .problem__header {
+            margin-bottom: var(--space-7);
+            max-width: 600px;
+        }
+        
+        .problem__header h2 {
+            margin-top: var(--space-4);
+        }
+        
+        .problem__intro {
+            color: rgba(245, 242, 235, 0.7);
+            margin-bottom: var(--space-6);
+            max-width: 700px;
+        }
+        
+        .problem__cards {
+            display: grid;
+            gap: var(--space-5);
+            margin-bottom: var(--space-7);
+        }
+        
+        @media (min-width: 768px) {
+            .problem__cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .problem-card {
+            padding: var(--space-6);
+            background: var(--deep-black);
+            border: 1px solid var(--charcoal);
+            transition: border-color var(--transition-base);
+        }
+        
+        .problem-card:hover {
+            border-color: var(--brass-dark);
+        }
+        
+        .problem-card h4 {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: var(--space-3);
+            line-height: 1.3;
+        }
+        
+        .problem-card p {
+            font-size: var(--text-sm);
+            color: rgba(245, 242, 235, 0.6);
+            line-height: 1.6;
+        }
+        
+        .problem__punchline {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            color: var(--cream);
+        }
+        
+        /* ========================================
+           VALUE PROPOSITION
+        ======================================== */
+        .value {
+            text-align: center;
+            background: var(--deep-black);
+            position: relative;
+        }
+        
+        .value::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(184, 151, 106, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        .value__quote {
+            font-family: var(--font-display);
+            font-size: var(--text-4xl);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--cream);
+            max-width: 900px;
+            margin: 0 auto var(--space-6);
+            line-height: 1.3;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .value__explanation {
+            color: rgba(245, 242, 235, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ========================================
+           STAGNATION SECTION
+        ======================================== */
+        .stagnation {
+            background: var(--warm-black);
+        }
+        
+        .stagnation__grid {
+            display: grid;
+            gap: var(--space-8);
+        }
+        
+        @media (min-width: 768px) {
+            .stagnation__grid {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-10);
+            }
+        }
+        
+        .stagnation__header h2 {
+            margin-top: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+        
+        .stagnation__header .subtitle {
+            margin-bottom: var(--space-5);
+        }
+        
+        .stagnation__header p {
+            color: rgba(245, 242, 235, 0.7);
+        }
+        
+        .stagnation__list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+        
+        .stagnation__list li {
+            padding-left: var(--space-6);
+            position: relative;
+            color: rgba(245, 242, 235, 0.7);
+        }
+        
+        .stagnation__list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7em;
+            width: 16px;
+            height: 1px;
+            background: var(--brass);
+        }
+        
+        .stagnation__conclusion {
+            margin-top: var(--space-6);
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            color: var(--cream);
+        }
+        
+        /* ========================================
+           AUDIENCE SECTION
+        ======================================== */
+        .audience {
+            background: var(--ink-black);
+        }
+        
+        .audience__grid {
+            display: grid;
+            gap: var(--space-6);
+        }
+        
+        @media (min-width: 768px) {
+            .audience__grid {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-8);
+            }
+        }
+        
+        .audience__card {
+            padding: var(--space-7);
+            border: 1px solid var(--charcoal);
+            background: var(--deep-black);
+        }
+        
+        .audience__card h3 {
+            margin-top: var(--space-4);
+            margin-bottom: var(--space-5);
+            color: var(--cream);
+        }
+        
+        .audience__card ul {
+            list-style: none;
+        }
+        
+        .audience__card li {
+            padding: var(--space-4) 0;
+            color: rgba(245, 242, 235, 0.7);
+            border-bottom: 1px solid var(--charcoal);
+            font-size: var(--text-sm);
+        }
+        
+        .audience__card li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .audience__card--not .label {
+            color: var(--silver);
+        }
+        
+        .audience__card--not h3 {
+            color: var(--silver);
+        }
+        
+        /* ========================================
+           SERVICES SECTION
+        ======================================== */
+        .services {
+            background: var(--deep-black);
+            position: relative;
+        }
+        
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: -10%;
+            width: 50%;
+            height: 60%;
+            background: radial-gradient(ellipse at center, rgba(184, 151, 106, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        .services__header {
+            text-align: center;
+            margin-bottom: var(--space-9);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .services__header h2 {
+            margin-top: var(--space-4);
+        }
+        
+        .services__grid {
+            display: grid;
+            gap: var(--space-6);
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (min-width: 900px) {
+            .services__grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .service-card {
+            padding: var(--space-7);
+            border: 1px solid var(--charcoal);
+            background: var(--ink-black);
+            transition: border-color var(--transition-base);
+        }
+        
+        .service-card:hover {
+            border-color: var(--brass);
+        }
+        
+        .service-card__label {
+            margin-bottom: var(--space-5);
+        }
+        
+        .service-card__title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            margin-bottom: var(--space-4);
+            color: var(--cream);
+            line-height: 1.2;
+        }
+        
+        .service-card__description {
+            color: rgba(245, 242, 235, 0.6);
+            font-size: var(--text-sm);
+        }
+        
+        /* ========================================
+           ABOUT SECTION
+        ======================================== */
+        .about {
+            background: var(--ink-black);
+        }
+        
+        .about__grid {
+            display: grid;
+            gap: var(--space-8);
+        }
+        
+        @media (min-width: 768px) {
+            .about__grid {
+                grid-template-columns: 1fr 1.3fr;
+                gap: var(--space-10);
+                align-items: center;
+            }
+        }
+        
+        .about__image {
+            aspect-ratio: 4/5;
+            background: var(--charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about__content h2 {
+            margin-top: var(--space-4);
+            margin-bottom: var(--space-6);
+            font-size: var(--text-3xl);
+        }
+        
+        .about__content p {
+            color: rgba(245, 242, 235, 0.7);
+            margin-bottom: var(--space-4);
+        }
+        
+        .about__content p:last-of-type {
+            margin-bottom: var(--space-6);
+        }
+        
+        .about__signature {
+            color: var(--cream);
+            font-weight: 500;
+            margin-bottom: var(--space-6);
+        }
+        
+        /* ========================================
+           OUTCOMES SECTION
+        ======================================== */
+        .outcomes {
+            background: var(--warm-black);
+        }
+        
+        .outcomes__header {
+            margin-bottom: var(--space-8);
+        }
+        
+        .outcomes__header h2 {
+            margin-top: var(--space-4);
+        }
+        
+        .outcomes__grid {
+            display: grid;
+            gap: var(--space-6);
+        }
+        
+        @media (min-width: 768px) {
+            .outcomes__grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .outcome-card {
+            padding: var(--space-6);
+            border-left: 2px solid var(--brass);
+            background: var(--deep-black);
+        }
+        
+        .outcome-card__problem {
+            font-size: var(--text-sm);
+            color: rgba(245, 242, 235, 0.6);
+            margin-bottom: var(--space-3);
+        }
+        
+        .outcome-card__problem strong {
+            color: var(--silver);
+        }
+        
+        .outcome-card__result {
+            color: var(--cream);
+        }
+        
+        .outcome-card__result strong {
+            color: var(--brass);
+        }
+        
+        .outcome-card__metrics {
+            margin-top: var(--space-5);
+            padding-top: var(--space-5);
+            border-top: 1px solid var(--charcoal);
+            font-size: var(--text-sm);
+            color: var(--brass);
+            letter-spacing: 0.02em;
+        }
+        
+        /* ========================================
+           TESTIMONIALS SECTION
+        ======================================== */
+        .testimonials {
+            background: var(--ink-black);
+        }
+        
+        .testimonials__header {
+            margin-bottom: var(--space-8);
+        }
+        
+        .testimonials__header h2 {
+            margin-top: var(--space-4);
+        }
+        
+        .testimonials__grid {
+            display: grid;
+            gap: var(--space-6);
+        }
+        
+        @media (min-width: 768px) {
+            .testimonials__grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .testimonial {
+            padding: var(--space-6);
+            background: var(--deep-black);
+            border: 1px solid var(--charcoal);
+        }
+        
+        .testimonial__quote {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-style: italic;
+            color: var(--cream);
+            margin-bottom: var(--space-5);
+            line-height: 1.5;
+        }
+        
+        .testimonial__author {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--brass);
+        }
+        
+        .testimonial__role {
+            font-size: var(--text-sm);
+            color: var(--silver);
+        }
+        
+        /* ========================================
+           CONTACT SECTION
+        ======================================== */
+        .contact {
+            background: var(--deep-black);
+            position: relative;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(ellipse at bottom left, rgba(184, 151, 106, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        .contact__grid {
+            display: grid;
+            gap: var(--space-8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (min-width: 768px) {
+            .contact__grid {
+                grid-template-columns: 1fr 1.2fr;
+                gap: var(--space-10);
+            }
+        }
+        
+        .contact__content h2 {
+            margin-top: var(--space-4);
+            margin-bottom: var(--space-5);
+        }
+        
+        .contact__content p {
+            color: rgba(245, 242, 235, 0.7);
+        }
+        
+        .contact__form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-5);
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+        
+        .form-group label {
+            font-size: var(--text-sm);
+            color: var(--silver);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            padding: var(--space-4);
+            background: var(--ink-black);
+            border: 1px solid var(--charcoal);
+            color: var(--cream);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            transition: border-color var(--transition-fast);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--brass);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            gap: var(--space-5);
+        }
+        
+        @media (min-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* ========================================
+           FOOTER
+        ======================================== */
+        .footer {
+            padding: var(--space-8) 0;
+            background: var(--ink-black);
+            border-top: 1px solid var(--charcoal);
+        }
+        
+        .footer__inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+            align-items: center;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .footer__inner {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+        
+        .footer__brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .footer__brand svg {
+            width: 36px;
+            height: 36px;
+        }
+        
+        .footer__text {
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            color: var(--cream);
+        }
+        
+        .footer__links {
+            display: flex;
+            gap: var(--space-6);
+        }
+        
+        .footer__links a {
+            font-size: var(--text-sm);
+            color: rgba(245, 242, 235, 0.6);
+            transition: color var(--transition-fast);
+        }
+        
+        .footer__links a:hover {
+            color: var(--cream);
+        }
+        
+        .footer__legal {
+            font-size: var(--text-sm);
+            color: rgba(245, 242, 235, 0.6);
+        }
+        
+        .footer__legal a {
+            transition: color var(--transition-fast);
+        }
+        
+        .footer__legal a:hover {
+            color: var(--brass);
+        }
+        
+        /* ========================================
+           UTILITIES
+        ======================================== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+        
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+        @media (max-width: 767px) {
+            h1 {
+                font-size: var(--text-4xl);
+            }
+            
+            h2 {
+                font-size: var(--text-3xl);
+            }
+            
+            section {
+                padding: var(--space-8) 0;
+            }
+            
+            .nav__links {
+                display: none;
+            }
+            
+            .value__quote {
+                font-size: var(--text-2xl);
+            }
+            
+            .credential__number {
+                font-size: var(--text-4xl);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="container nav__inner">
+            <a href="/" class="nav__logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                </svg>
+                <span class="nav__logo-text">Centre Channel</span>
+            </a>
+            
+            <ul class="nav__links">
+                <li><a href="#services">How I Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#outcomes">Results</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <a href="#contact" class="nav__cta">Let's Talk</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__content">
+                <p class="label hero__label">Mark Leach · Centre Channel</p>
+                <h1 class="hero__title">Independent eCommerce Director <span class="emphasis">& Strategic Fixer</span></h1>
+                <p class="hero__subtitle">I fix stalled growth and de-risk replatforming for £20M+ fashion, beauty and lifestyle brands.</p>
+                <p class="hero__credentials">Ex-Missguided & Brainlabs</p>
+                <div class="hero__cta">
+                    <a href="#contact" class="btn btn--primary">Get in Touch</a>
+                    <a href="#services" class="link-arrow">How I Work</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span class="scroll-indicator__text">Scroll</span>
+            <div class="scroll-indicator__line"></div>
+        </div>
+    </section>
+
+    <!-- Credentials Section -->
+    <section class="credentials">
+        <div class="container">
+            <div class="credentials__grid">
+                <div class="credential">
+                    <div class="credential__number">20+</div>
+                    <div class="credential__label">Years in Digital</div>
+                </div>
+                <div class="credential">
+                    <div class="credential__number">7-fig</div>
+                    <div class="credential__label">Agency Exit</div>
+                </div>
+                <div class="credential">
+                    <div class="credential__number">100%</div>
+                    <div class="credential__label">Client Retention</div>
+                </div>
+                <div class="credential">
+                    <div class="credential__number">#1</div>
+                    <div class="credential__label">App Store Rank</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust">
+        <div class="container">
+            <p class="trust__text">Experience includes <span class="trust__brands">ARNE · Abbott Lyon · Travel Counsellors · MEDDICC · StoryStream</span></p>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <div class="problem__header">
+                <p class="label">The Reality</p>
+                <h2>Retail Boards Want Fast Growth</h2>
+            </div>
+            <p class="problem__intro">Your platform's maxed out, systems don't sync, customer data lives in five places, and nobody trusts the numbers enough to commit the budget. Meanwhile, agencies pitch "transformation." Nothing moves. Pressure mounts.</p>
+            
+            <div class="problem__cards">
+                <div class="problem-card">
+                    <h4>Your data is inconsistent</h4>
+                    <p>So you can't trust the P&L or make confident investment decisions.</p>
+                </div>
+                <div class="problem-card">
+                    <h4>Your agency sells complexity</h4>
+                    <p>They're incentivised to extend projects, not deliver speed to value.</p>
+                </div>
+                <div class="problem-card">
+                    <h4>Discovery phases drag on</h4>
+                    <p>Your leadership team is waiting for answers while the market moves on.</p>
+                </div>
+            </div>
+            
+            <p class="problem__punchline">This isn't a technology problem. It's a <span class="emphasis">decision problem.</span></p>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="value">
+        <div class="container container--narrow">
+            <p class="value__quote">"Think of me as the 10% that ensures your other 90% delivers what it promised."</p>
+            <p class="value__explanation">I ensure clear scope, aligned teams, and delivery that actually lands — so your investment doesn't get wasted on rework, scope creep, or agencies pulling in different directions.</p>
+        </div>
+    </section>
+
+    <!-- Stagnation Section -->
+    <section class="stagnation">
+        <div class="container">
+            <div class="stagnation__grid">
+                <div class="stagnation__header">
+                    <p class="label">The Pattern</p>
+                    <h2>The Stagnation Trap</h2>
+                    <p class="subtitle">You have the budget. You have the agency. You have the strategy deck.</p>
+                    <p>So why isn't the needle moving? For most brands, the problem isn't "strategy." The problem is execution drag.</p>
+                </div>
+                <div>
+                    <ul class="stagnation__list">
+                        <li>Your data is inconsistent, so you can't trust the P&L.</li>
+                        <li>Your agency is incentivised to sell complexity, not speed.</li>
+                        <li>Your leadership team is waiting for a "Discovery Phase" to end while the market moves on.</li>
+                    </ul>
+                    <p class="stagnation__conclusion">You don't need more slides. You need operational traction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience Section -->
+    <section class="audience">
+        <div class="container">
+            <div class="audience__grid">
+                <div class="audience__card">
+                    <p class="label">Who This Is For</p>
+                    <h3>Right Fit</h3>
+                    <ul>
+                        <li>£20–£150m brand in fashion, home, lifestyle or high-growth business where digital performance drives commercial results</li>
+                        <li>Under pressure from your board to deliver growth, but your digital operation can't keep up</li>
+                        <li>On Shopify or Shopify Plus, or managing a complex ecosystem of platforms and data</li>
+                        <li>Need focus, clarity, and alignment between commercial ambition and digital delivery</li>
+                    </ul>
+                </div>
+                <div class="audience__card audience__card--not">
+                    <p class="label">Who This Is Not For</p>
+                    <h3>Not Right Fit</h3>
+                    <ul>
+                        <li>You need strategy decks rather than hands-on delivery</li>
+                        <li>Budget isn't available for proper resolution (typically £30k+ over 3–6 months)</li>
+                        <li>Your team isn't ready to change how they work</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services__header">
+                <p class="label">How I Work</p>
+                <h2>Three Ways to Engage</h2>
+            </div>
+            <div class="services__grid">
+                <div class="service-card">
+                    <p class="label service-card__label">10-Day Diagnostic</p>
+                    <h3 class="service-card__title">The Revenue Assurance Audit</h3>
+                    <p class="service-card__description">An expert interrogation of data, tech, and team to isolate the root cause of stagnation.</p>
+                </div>
+                <div class="service-card">
+                    <p class="label service-card__label">Fractional Leadership</p>
+                    <h3 class="service-card__title">The Fractional eCommerce Director</h3>
+                    <p class="service-card__description">Senior commercial leadership embedded in your team to govern the roadmap and close the gap between strategy and execution.</p>
+                </div>
+                <div class="service-card">
+                    <p class="label service-card__label">Programme Delivery</p>
+                    <h3 class="service-card__title">Strategic Programme Leadership</h3>
+                    <p class="service-card__description">Client-side ownership for high-risk replatforming and capital projects where failure is not an option.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about__grid">
+                <div class="about__image">
+                    <!-- Placeholder for Mark's photo -->
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--silver); font-size: var(--text-sm);">
+                        [Photo]
+                    </div>
+                </div>
+                <div class="about__content">
+                    <p class="label">The Man Behind The Method</p>
+                    <h2>I didn't learn eCommerce from a textbook.</h2>
+                    <p>I learned it by managing P&Ls for brands like Missguided and scaling operations for agencies like Brainlabs.</p>
+                    <p>I founded Centre Channel because I saw a gap in the market: The "Missing Middle."</p>
+                    <p>Consultants give you theory. Agencies give you billable hours. But no one was willing to sit between the Board and the Code to ensure the work actually gets delivered.</p>
+                    <p class="about__signature">That is where I live. I am the independent voice in the room who translates "Commercial Ambition" into "Technical Reality."</p>
+                    <a href="/about" class="link-arrow">Read more about my journey</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes Section -->
+    <section class="outcomes" id="outcomes">
+        <div class="container">
+            <div class="outcomes__header">
+                <p class="label">Proof</p>
+                <h2>Recent Outcomes</h2>
+            </div>
+            <div class="outcomes__grid">
+                <div class="outcome-card">
+                    <p class="outcome-card__problem"><strong>Problem:</strong> Outgrowing platform, three agencies pitching different solutions, board nervous about £300k+ decision</p>
+                    <p class="outcome-card__result"><strong>Result:</strong> Led discovery and replatform governance</p>
+                    <p class="outcome-card__metrics">+8% conversion · +12% AOV · On time/budget</p>
+                </div>
+                <div class="outcome-card">
+                    <p class="outcome-card__problem"><strong>Problem:</strong> Rising SaaS costs killing margin, board questioning tech stack ROI</p>
+                    <p class="outcome-card__result"><strong>Result:</strong> Built and delivered bespoke native app</p>
+                    <p class="outcome-card__metrics">+11% conversion · 5-point web-to-app shift · 12-month payback</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="testimonials__header">
+                <p class="label">What Clients Say</p>
+                <h2>Trusted by Leaders</h2>
+            </div>
+            <div class="testimonials__grid">
+                <div class="testimonial">
+                    <p class="testimonial__quote">"Mark is a true expert in eCommerce. I've experienced how he accelerates growth and builds strong teams. He remains a trusted advisor of mine."</p>
+                    <p class="testimonial__author">Gareth Jones</p>
+                    <p class="testimonial__role">Chairman, Abbott Lyon</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial__quote">"We were stuck with some UX questions that we couldn't see a way through. Your perspective made us see the bigger picture and unlock what we think is the right path forward."</p>
+                    <p class="testimonial__author">Andy Whyte</p>
+                    <p class="testimonial__role">CEO, MEDDICC</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial__quote">"I can honestly say Mark is the most knowledgeable person I have met when it comes to conversion/customer journey improvements and all things digital."</p>
+                    <p class="testimonial__author">Paul Masters</p>
+                    <p class="testimonial__role">CFO</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial__quote">"The depth of knowledge coupled with experience client side allows Mark not only to see around corners, but to deliver practical strategy in a way that brings a client and business on a complex journey, simplified."</p>
+                    <p class="testimonial__author">Matt Adams</p>
+                    <p class="testimonial__role">Global COO, Assembly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact__grid">
+                <div class="contact__content">
+                    <p class="label">Get Started</p>
+                    <h2>Interested in Working Together?</h2>
+                    <p>Tell me a little about your challenge and I'll be in touch within 48 hours to discuss whether Centre Channel is the right fit.</p>
+                </div>
+                <form class="contact__form" name="contact" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="contact">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                </svg>
+                <span class="footer__text">Centre Channel Ltd</span>
+            </div>
+            
+            <div class="footer__links">
+                <a href="/about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+                <a href="https://www.linkedin.com/in/markleach/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+            
+            <p class="footer__legal">
+                <a href="mailto:mark@centrechannel.com">mark@centrechannel.com</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
