@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results | Client Dossiers | Centre Channel</title>
+    <meta name="description" content="Selected case studies from Centre Channel engagements. Request access to the full client dossiers.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Results | Centre Channel">
+    <meta property="og:description" content="Selected case studies from Centre Channel engagements.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://centrechannel.com/results">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ink-black: #0a0a0a;
+            --deep-black: #141414;
+            --warm-black: #1a1918;
+            --charcoal: #2a2a2a;
+            --graphite: #3a3a3a;
+            --cream: #f5f2eb;
+            --warm-white: #faf9f7;
+            --stone: #e8e4dc;
+            --silver: #9a9a9a;
+            --brass: #b8976a;
+            --brass-light: #d4bc94;
+            --brass-dark: #96784d;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --text-xs: 0.6875rem;
+            --text-sm: 0.8125rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 2rem;
+            --text-4xl: 2.5rem;
+            --text-5xl: 3rem;
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+            --space-7: 48px;
+            --space-8: 64px;
+            --space-9: 96px;
+            --space-10: 128px;
+            --max-width: 1200px;
+            --max-width-narrow: 800px;
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 400ms ease;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--cream);
+            background-color: var(--ink-black);
+            overflow-x: hidden;
+        }
+        
+        body.modal-open {
+            overflow: hidden;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            line-height: 1.15;
+        }
+        
+        h1 {
+            font-size: var(--text-5xl);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: var(--text-3xl);
+            font-weight: 400;
+        }
+        
+        h3 {
+            font-size: var(--text-2xl);
+            font-weight: 400;
+        }
+        
+        .label {
+            font-family: var(--font-body);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--brass);
+        }
+        
+        .emphasis {
+            font-style: italic;
+            color: var(--brass);
+        }
+        
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+        
+        section {
+            padding: var(--space-9) 0;
+            position: relative;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--space-5) 0;
+            background: linear-gradient(to bottom, var(--ink-black) 0%, transparent 100%);
+            transition: background var(--transition-base);
+        }
+        
+        .nav.scrolled {
+            background: var(--ink-black);
+            border-bottom: 1px solid var(--charcoal);
+        }
+        
+        .nav__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .nav__logo svg {
+            width: 44px;
+            height: 44px;
+        }
+        
+        .nav__logo-text {
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--cream);
+            letter-spacing: 0.05em;
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .nav__logo-text {
+                display: block;
+            }
+        }
+        
+        .nav__links {
+            display: flex;
+            gap: var(--space-7);
+            list-style: none;
+        }
+        
+        .nav__links a {
+            font-size: var(--text-sm);
+            color: rgba(245, 242, 235, 0.7);
+            transition: color var(--transition-fast);
+        }
+        
+        .nav__links a:hover {
+            color: var(--cream);
+        }
+        
+        .nav__cta {
+            display: none;
+            font-size: var(--text-sm);
+            color: var(--brass);
+            transition: color var(--transition-fast);
+        }
+        
+        .nav__cta:hover {
+            color: var(--brass-light);
+        }
+        
+        @media (min-width: 768px) {
+            .nav__cta {
+                display: inline-flex;
+            }
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-3) var(--space-6);
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid var(--brass);
+            background: transparent;
+            color: var(--brass);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn:hover {
+            background: var(--brass);
+            color: var(--ink-black);
+        }
+        
+        .btn--primary {
+            background: var(--brass);
+            color: var(--ink-black);
+        }
+        
+        .btn--primary:hover {
+            background: var(--brass-light);
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding-top: calc(var(--space-10) + 40px);
+            padding-bottom: var(--space-8);
+            position: relative;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -10%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(184, 151, 106, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        .page-header__content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+        
+        .page-header__label {
+            margin-bottom: var(--space-4);
+        }
+        
+        .page-header__title {
+            margin-bottom: var(--space-5);
+        }
+        
+        .page-header__intro {
+            font-size: var(--text-xl);
+            color: rgba(245, 242, 235, 0.8);
+        }
+        
+        /* Dossiers Grid */
+        .dossiers {
+            padding-top: var(--space-7);
+        }
+        
+        .dossiers__grid {
+            display: grid;
+            gap: var(--space-7);
+        }
+        
+        @media (min-width: 900px) {
+            .dossiers__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Dossier Card */
+        .dossier {
+            background: var(--deep-black);
+            border: 1px solid var(--charcoal);
+            padding: var(--space-7);
+            position: relative;
+            transition: border-color var(--transition-base);
+        }
+        
+        .dossier:hover {
+            border-color: var(--brass-dark);
+        }
+        
+        .dossier__header {
+            margin-bottom: var(--space-5);
+            padding-bottom: var(--space-5);
+            border-bottom: 1px solid var(--charcoal);
+        }
+        
+        .dossier__client {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: var(--space-2);
+        }
+        
+        .dossier__meta {
+            font-size: var(--text-sm);
+            color: var(--silver);
+        }
+        
+        .dossier__content {
+            margin-bottom: var(--space-6);
+        }
+        
+        .dossier__section {
+            margin-bottom: var(--space-5);
+        }
+        
+        .dossier__section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .dossier__section-label {
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: var(--space-2);
+        }
+        
+        .dossier__section-label--signal {
+            color: var(--brass);
+        }
+        
+        .dossier__text {
+            color: rgba(245, 242, 235, 0.7);
+            font-size: var(--text-sm);
+            line-height: 1.6;
+        }
+        
+        .dossier__signal {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-style: italic;
+            color: var(--brass);
+            line-height: 1.5;
+        }
+        
+        .dossier__stats {
+            display: flex;
+            gap: var(--space-6);
+            padding-top: var(--space-5);
+            border-top: 1px solid var(--charcoal);
+            margin-bottom: var(--space-6);
+        }
+        
+        .dossier__stat {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+        
+        .dossier__stat-value {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            color: var(--cream);
+        }
+        
+        .dossier__stat-label {
+            font-size: var(--text-xs);
+            color: var(--silver);
+        }
+        
+        .dossier__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-size: var(--text-sm);
+            color: var(--brass);
+            cursor: pointer;
+            transition: color var(--transition-fast);
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: var(--font-body);
+        }
+        
+        .dossier__cta:hover {
+            color: var(--brass-light);
+        }
+        
+        .dossier__cta::after {
+            content: '→';
+            transition: transform var(--transition-fast);
+        }
+        
+        .dossier__cta:hover::after {
+            transform: translateX(4px);
+        }
+        
+        /* Coming Soon Card */
+        .dossier--coming-soon {
+            opacity: 0.6;
+            border-style: dashed;
+        }
+        
+        .dossier--coming-soon:hover {
+            border-color: var(--charcoal);
+        }
+        
+        .dossier__coming-soon-text {
+            font-size: var(--text-sm);
+            color: var(--silver);
+            font-style: italic;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 10, 0.9);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-6);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-base), visibility var(--transition-base);
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background: var(--deep-black);
+            border: 1px solid var(--charcoal);
+            padding: var(--space-8);
+            max-width: 480px;
+            width: 100%;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform var(--transition-base);
+        }
+        
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+        
+        .modal__close {
+            position: absolute;
+            top: var(--space-5);
+            right: var(--space-5);
+            background: none;
+            border: none;
+            color: var(--silver);
+            cursor: pointer;
+            font-size: var(--text-xl);
+            line-height: 1;
+            transition: color var(--transition-fast);
+        }
+        
+        .modal__close:hover {
+            color: var(--cream);
+        }
+        
+        .modal__label {
+            margin-bottom: var(--space-4);
+        }
+        
+        .modal__title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            margin-bottom: var(--space-3);
+        }
+        
+        .modal__dossier-name {
+            font-size: var(--text-sm);
+            color: var(--brass);
+            margin-bottom: var(--space-6);
+        }
+        
+        .modal__form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-5);
+        }
+        
+        .modal__input-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+        
+        .modal__input-group label {
+            font-size: var(--text-sm);
+            color: var(--silver);
+        }
+        
+        .modal__input-group input {
+            padding: var(--space-3) var(--space-4);
+            background: var(--ink-black);
+            border: 1px solid var(--charcoal);
+            color: var(--cream);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            transition: border-color var(--transition-fast);
+        }
+        
+        .modal__input-group input:focus {
+            outline: none;
+            border-color: var(--brass);
+        }
+        
+        .modal__input-group input::placeholder {
+            color: var(--graphite);
+        }
+        
+        .modal__submit {
+            margin-top: var(--space-3);
+        }
+        
+        .modal__note {
+            font-size: var(--text-xs);
+            color: var(--silver);
+            margin-top: var(--space-4);
+        }
+        
+        /* Success state */
+        .modal__success {
+            display: none;
+            text-align: center;
+            padding: var(--space-6) 0;
+        }
+        
+        .modal__success.active {
+            display: block;
+        }
+        
+        .modal__form.hidden {
+            display: none;
+        }
+        
+        .modal__success-icon {
+            font-size: var(--text-4xl);
+            color: var(--brass);
+            margin-bottom: var(--space-4);
+        }
+        
+        .modal__success-title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-3);
+        }
+        
+        .modal__success-text {
+            color: rgba(245, 242, 235, 0.7);
+            font-size: var(--text-sm);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: var(--space-8) 0;
+            background: var(--ink-black);
+            border-top: 1px solid var(--charcoal);
+        }
+        
+        .footer__inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+            align-items: center;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .footer__inner {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+        
+        .footer__brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .footer__brand svg {
+            width: 36px;
+            height: 36px;
+        }
+        
+        .footer__text {
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            color: var(--cream);
+        }
+        
+        .footer__links {
+            display: flex;
+            gap: var(--space-6);
+        }
+        
+        .footer__links a {
+            font-size: var(--text-sm);
+            color: rgba(245, 242, 235, 0.6);
+            transition: color var(--transition-fast);
+        }
+        
+        .footer__links a:hover {
+            color: var(--cream);
+        }
+        
+        .footer__legal {
+            font-size: var(--text-sm);
+            color: rgba(245, 242, 235, 0.6);
+        }
+        
+        .footer__legal a {
+            transition: color var(--transition-fast);
+        }
+        
+        .footer__legal a:hover {
+            color: var(--brass);
+        }
+        
+        /* Responsive */
+        @media (max-width: 767px) {
+            h1 {
+                font-size: var(--text-4xl);
+            }
+            
+            h2 {
+                font-size: var(--text-2xl);
+            }
+            
+            section {
+                padding: var(--space-8) 0;
+            }
+            
+            .nav__links {
+                display: none;
+            }
+            
+            .page-header {
+                padding-top: var(--space-9);
+            }
+            
+            .dossier {
+                padding: var(--space-6);
+            }
+            
+            .dossier__stats {
+                flex-wrap: wrap;
+                gap: var(--space-4);
+            }
+            
+            .modal {
+                padding: var(--space-6);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="container nav__inner">
+            <a href="/" class="nav__logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                </svg>
+                <span class="nav__logo-text">Centre Channel</span>
+            </a>
+            
+            <ul class="nav__links">
+                <li><a href="/services">How I Work</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/results">Results</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+            
+            <a href="/#contact" class="nav__cta">Let's Talk</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <div class="page-header__content">
+                <p class="label page-header__label">Results</p>
+                <h1 class="page-header__title">Client <span class="emphasis">Dossiers.</span></h1>
+                <p class="page-header__intro">Selected engagements where we found the signal, cut the noise, and delivered measurable outcomes.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dossiers -->
+    <section class="dossiers">
+        <div class="container">
+            <div class="dossiers__grid">
+                
+                <!-- ARNE Dossier -->
+                <article class="dossier">
+                    <div class="dossier__header">
+                        <h2 class="dossier__client">ARNE</h2>
+                        <p class="dossier__meta">Quiet luxury menswear · Shopify Plus</p>
+                    </div>
+                    
+                    <div class="dossier__content">
+                        <div class="dossier__section">
+                            <p class="dossier__section-label">The noise</p>
+                            <p class="dossier__text">A fast-growing brand trapped in vendor lock-in. $600k annual app fees on the horizon. Technical debt accumulating. A talented team stuck in reactive mode.</p>
+                        </div>
+                        
+                        <div class="dossier__section">
+                            <p class="dossier__section-label dossier__section-label--signal">The signal</p>
+                            <p class="dossier__signal">Stop renting capability. Start owning it.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dossier__stats">
+                        <div class="dossier__stat">
+                            <span class="dossier__stat-value">$600k</span>
+                            <span class="dossier__stat-label">Annual fees avoided</span>
+                        </div>
+                        <div class="dossier__stat">
+                            <span class="dossier__stat-value">&lt;12mo</span>
+                            <span class="dossier__stat-label">Payback period</span>
+                        </div>
+                    </div>
+                    
+                    <button class="dossier__cta" onclick="openModal('ARNE')">
+                        Request the full dossier
+                    </button>
+                </article>
+                
+                <!-- Coming Soon -->
+                <article class="dossier dossier--coming-soon">
+                    <div class="dossier__header">
+                        <h2 class="dossier__client">More to come</h2>
+                        <p class="dossier__meta">Additional case studies in development</p>
+                    </div>
+                    
+                    <div class="dossier__content">
+                        <p class="dossier__coming-soon-text">Further client dossiers will be added as engagements conclude and results are verified.</p>
+                    </div>
+                </article>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                </svg>
+                <span class="footer__text">Centre Channel Ltd</span>
+            </div>
+            
+            <div class="footer__links">
+                <a href="/about">About</a>
+                <a href="/services">Services</a>
+                <a href="/results">Results</a>
+                <a href="https://www.linkedin.com/in/markleach/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+            
+            <p class="footer__legal">
+                <a href="mailto:mark@centrechannel.com">mark@centrechannel.com</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal__close" onclick="closeModal()">&times;</button>
+            
+            <form class="modal__form" id="dossierForm" name="dossier-request" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="dossier-request">
+                <input type="hidden" name="dossier" id="dossierInput" value="">
+                
+                <p class="label modal__label">Request Dossier</p>
+                <h3 class="modal__title">Get the full case study</h3>
+                <p class="modal__dossier-name" id="modalDossierName"></p>
+                
+                <div class="modal__input-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" placeholder="you@company.com" required>
+                </div>
+                
+                <button type="submit" class="btn btn--primary modal__submit" style="width: 100%;">Send me the dossier</button>
+                
+                <p class="modal__note">I'll send the full case study to your inbox within 24 hours.</p>
+            </form>
+            
+            <div class="modal__success" id="modalSuccess">
+                <div class="modal__success-icon">✓</div>
+                <h3 class="modal__success-title">Request received</h3>
+                <p class="modal__success-text">I'll send the dossier to your inbox shortly.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // Modal functionality
+        const modalOverlay = document.getElementById('modalOverlay');
+        const dossierInput = document.getElementById('dossierInput');
+        const modalDossierName = document.getElementById('modalDossierName');
+        const dossierForm = document.getElementById('dossierForm');
+        const modalSuccess = document.getElementById('modalSuccess');
+        
+        function openModal(dossierName) {
+            dossierInput.value = dossierName;
+            modalDossierName.textContent = dossierName + ' Case Study';
+            modalOverlay.classList.add('active');
+            document.body.classList.add('modal-open');
+            
+            // Reset form state
+            dossierForm.classList.remove('hidden');
+            modalSuccess.classList.remove('active');
+        }
+        
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+        
+        // Close on overlay click
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+        
+        // Close on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Form submission
+        dossierForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(dossierForm);
+            
+            try {
+                await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                });
+                
+                // Show success
+                dossierForm.classList.add('hidden');
+                modalSuccess.classList.add('active');
+                
+                // Close after delay
+                setTimeout(() => {
+                    closeModal();
+                    dossierForm.reset();
+                }, 2500);
+                
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
