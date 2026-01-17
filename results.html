@@ -821,7 +821,7 @@
         <div class="modal">
             <button class="modal__close" onclick="closeModal()">&times;</button>
             
-            <form class="modal__form" id="dossierForm" name="dossier-request" method="POST" data-netlify="true">
+            <form class="modal__form" id="dossierForm" name="dossier-request" method="POST" data-netlify="true" action="/thank-you">
                 <input type="hidden" name="form-name" value="dossier-request">
                 <input type="hidden" name="dossier" id="dossierInput" value="">
                 
@@ -863,18 +863,12 @@
         const modalOverlay = document.getElementById('modalOverlay');
         const dossierInput = document.getElementById('dossierInput');
         const modalDossierName = document.getElementById('modalDossierName');
-        const dossierForm = document.getElementById('dossierForm');
-        const modalSuccess = document.getElementById('modalSuccess');
         
         function openModal(dossierName) {
             dossierInput.value = dossierName;
             modalDossierName.textContent = dossierName + ' Case Study';
             modalOverlay.classList.add('active');
             document.body.classList.add('modal-open');
-            
-            // Reset form state
-            dossierForm.classList.remove('hidden');
-            modalSuccess.classList.remove('active');
         }
         
         function closeModal() {
@@ -893,34 +887,6 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeModal();
-            }
-        });
-        
-        // Form submission
-        dossierForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(dossierForm);
-            
-            try {
-                await fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(formData).toString()
-                });
-                
-                // Show success
-                dossierForm.classList.add('hidden');
-                modalSuccess.classList.add('active');
-                
-                // Close after delay
-                setTimeout(() => {
-                    closeModal();
-                    dossierForm.reset();
-                }, 2500);
-                
-            } catch (error) {
-                console.error('Error:', error);
             }
         });
     </script>
