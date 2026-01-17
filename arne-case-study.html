@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARNE Case Study | Centre Channel</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        :root {
+            /* Light palette from design system */
+            --ink-black: #0a0a0a;
+            --deep-black: #141414;
+            --warm-black: #1a1918;
+            --charcoal: #2a2a2a;
+            --graphite: #3a3a3a;
+            --cream: #f5f2eb;
+            --warm-cream: #ebe6db;
+            --stone: #d8d6d0;
+            --silver: #9a9a9a;
+            --brass: #b8976a;
+            --brass-light: #d4b896;
+            --brass-dark: #96784d;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-size: 11pt;
+            line-height: 1.7;
+            color: var(--ink-black);
+            background: var(--cream);
+        }
+        
+        /* Page structure */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm 25mm;
+            margin: 0 auto;
+            background: var(--cream);
+            position: relative;
+            page-break-after: always;
+        }
+        
+        .page:last-child {
+            page-break-after: auto;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15mm;
+            padding-bottom: 8mm;
+            border-bottom: 1px solid var(--stone);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo svg {
+            width: 28px;
+            height: 28px;
+        }
+        
+        .logo-text {
+            font-family: var(--font-body);
+            font-size: 10pt;
+            font-weight: 500;
+            color: var(--ink-black);
+            letter-spacing: 0.05em;
+        }
+        
+        .document-type {
+            font-size: 8pt;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--brass-dark);
+        }
+        
+        /* Cover page */
+        .cover-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: calc(297mm - 40mm - 60mm);
+        }
+        
+        .client-label {
+            font-size: 9pt;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--brass-dark);
+            margin-bottom: 8mm;
+        }
+        
+        .cover-title {
+            font-family: var(--font-display);
+            font-size: 32pt;
+            font-weight: 300;
+            line-height: 1.15;
+            color: var(--ink-black);
+            margin-bottom: 10mm;
+            max-width: 90%;
+        }
+        
+        .cover-title em {
+            font-style: italic;
+            color: var(--brass-dark);
+        }
+        
+        .cover-subtitle {
+            font-size: 12pt;
+            font-weight: 400;
+            color: var(--graphite);
+            line-height: 1.6;
+            max-width: 80%;
+            margin-bottom: 15mm;
+        }
+        
+        .cover-meta {
+            display: flex;
+            gap: 20mm;
+            padding-top: 10mm;
+            border-top: 1px solid var(--stone);
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2mm;
+        }
+        
+        .meta-label {
+            font-size: 7pt;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--silver);
+        }
+        
+        .meta-value {
+            font-size: 10pt;
+            font-weight: 500;
+            color: var(--ink-black);
+        }
+        
+        /* Section styling */
+        .section-label {
+            font-size: 8pt;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--brass-dark);
+            margin-bottom: 5mm;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 24pt;
+            font-weight: 400;
+            color: var(--ink-black);
+            margin-bottom: 10mm;
+        }
+        
+        /* Content blocks */
+        .content-block {
+            margin-bottom: 8mm;
+        }
+        
+        .block-heading {
+            font-size: 9pt;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--brass-dark);
+            margin-bottom: 3mm;
+        }
+        
+        .body-text {
+            font-size: 10pt;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--charcoal);
+        }
+        
+        .body-text + .body-text {
+            margin-top: 4mm;
+        }
+        
+        /* Signal box */
+        .signal-box {
+            padding: 6mm 8mm;
+            background: var(--warm-cream);
+            border-left: 2px solid var(--brass);
+            margin: 8mm 0;
+        }
+        
+        .signal-box p {
+            font-family: var(--font-display);
+            font-size: 12pt;
+            font-style: italic;
+            color: var(--brass-dark);
+            line-height: 1.6;
+        }
+        
+        /* Results grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6mm;
+            margin: 10mm 0;
+        }
+        
+        .result-item {
+            padding: 6mm;
+            background: var(--warm-cream);
+            border: 1px solid var(--stone);
+        }
+        
+        .result-number {
+            font-family: var(--font-display);
+            font-size: 24pt;
+            font-weight: 400;
+            color: var(--brass-dark);
+            margin-bottom: 2mm;
+        }
+        
+        .result-label {
+            font-size: 9pt;
+            font-weight: 400;
+            color: var(--graphite);
+        }
+        
+        /* Quote */
+        .quote-block {
+            padding: 8mm 0;
+            margin: 8mm 0;
+            border-top: 1px solid var(--stone);
+            border-bottom: 1px solid var(--stone);
+        }
+        
+        .quote-text {
+            font-family: var(--font-display);
+            font-size: 13pt;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--ink-black);
+            line-height: 1.6;
+            margin-bottom: 4mm;
+        }
+        
+        .quote-attribution {
+            font-size: 9pt;
+            font-weight: 500;
+            color: var(--brass-dark);
+        }
+        
+        /* Takeaways */
+        .takeaway-list {
+            list-style: none;
+            margin: 6mm 0;
+        }
+        
+        .takeaway-list li {
+            padding: 4mm 0 4mm 6mm;
+            border-left: 2px solid var(--stone);
+            font-size: 10pt;
+            color: var(--charcoal);
+            margin-bottom: 3mm;
+        }
+        
+        /* Footer */
+        .page-footer {
+            position: absolute;
+            bottom: 20mm;
+            left: 25mm;
+            right: 25mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8pt;
+            color: var(--silver);
+            padding-top: 5mm;
+            border-top: 1px solid var(--stone);
+        }
+        
+        /* Contact footer */
+        .contact-footer {
+            margin-top: 10mm;
+            padding-top: 8mm;
+            border-top: 1px solid var(--stone);
+        }
+        
+        .contact-footer p {
+            font-size: 9pt;
+            color: var(--graphite);
+            margin-bottom: 2mm;
+        }
+        
+        .contact-footer strong {
+            color: var(--ink-black);
+        }
+        
+        .contact-footer a {
+            color: var(--brass-dark);
+            text-decoration: none;
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .page {
+                margin: 0;
+                box-shadow: none;
+                background: white;
+            }
+        }
+        
+        /* Screen styles */
+        @media screen {
+            body {
+                background: var(--stone);
+                padding: 20px 0;
+            }
+            
+            .page {
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page 1: Cover -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#96784d" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#96784d" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#96784d">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#96784d">c</text>
+                </svg>
+                <span class="logo-text">Centre Channel</span>
+            </div>
+            <div class="document-type">Client Dossier</div>
+        </div>
+
+        <div class="cover-content">
+            <p class="client-label">ARNE</p>
+            <h1 class="cover-title">From reactive to <em>ready.</em></h1>
+            <p class="cover-subtitle">How a fast-growing quiet luxury brand escaped vendor lock-in, eliminated $600k in annual fees, and equipped their team to own their digital future.</p>
+            
+            <div class="cover-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Client</span>
+                    <span class="meta-value">ARNE</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Sector</span>
+                    <span class="meta-value">Quiet Luxury Menswear</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Platform</span>
+                    <span class="meta-value">Shopify Plus</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Engagement</span>
+                    <span class="meta-value">Strategic Programme Leadership</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>Centre Channel</span>
+            <span>1 / 4</span>
+        </div>
+    </div>
+
+    <!-- Page 2: The Situation -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#96784d" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#96784d" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#96784d">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#96784d">c</text>
+                </svg>
+                <span class="logo-text">Centre Channel</span>
+            </div>
+            <div class="document-type">Client Dossier</div>
+        </div>
+
+        <p class="section-label">01 — The Noise</p>
+        <h2 class="section-title">Outgrowing the setup</h2>
+
+        <div class="content-block">
+            <p class="body-text">ARNE had built something special. A quiet luxury menswear brand with genuine product-market fit and a loyal following. Growth had been strong—but the digital infrastructure hadn't kept pace.</p>
+            <p class="body-text">The licensed mobile app was about to become a serious problem. The vendor's new pricing model would cost $600k per year in fees alone. The Shopify storefront carried years of technical debt from layered customisations. And the internal team—very talented and committed—was stuck in reactive mode, firefighting rather than building.</p>
+        </div>
+
+        <div class="signal-box">
+            <p>There's a pattern at this stage of growth: everything that felt simple becomes complicated. The tools that got you here start holding you back. You're being pitched solutions, but decisions get bigger and harder to make with confidence.</p>
+        </div>
+
+        <div class="content-block">
+            <div class="block-heading">What was at stake</div>
+            <p class="body-text">Mobile app was already a significant revenue channel with headroom for growth. But ARNE didn't own its mobile experience—they were renting it. Meanwhile, Shopify app sprawl and overlapping functionality were creating unnecessary cost and performance drag across the entire stack.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Centre Channel</span>
+            <span>2 / 4</span>
+        </div>
+    </div>
+
+    <!-- Page 3: The Work -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#96784d" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#96784d" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#96784d">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#96784d">c</text>
+                </svg>
+                <span class="logo-text">Centre Channel</span>
+            </div>
+            <div class="document-type">Client Dossier</div>
+        </div>
+
+        <p class="section-label">02 — The Signal</p>
+        <h2 class="section-title">Build once, own forever</h2>
+
+        <div class="content-block">
+            <div class="block-heading">The diagnosis</div>
+            <p class="body-text">Discovery covered three areas: site speed, the mobile app decision, and analytics maturity. But the real finding was simpler. ARNE had outgrown their vendor relationships. They needed to stop renting capability and start owning it.</p>
+            <p class="body-text">The mobile app situation crystallised this. Paying $600k a year to rent an app with limited control over roadmap, features, or brand expression made no commercial sense. Neither did continuing to patch a website built on outdated architecture.</p>
+        </div>
+
+        <div class="content-block">
+            <div class="block-heading">The approach</div>
+            <p class="body-text">We ran a full RFP for the app, evaluating three approaches. The recommendation: build a bespoke native app with Equal Experts. One-time capital investment. Minimal ongoing costs. Full ownership of the roadmap, the code, and the customer experience.</p>
+            <p class="body-text">In parallel, we moved Shopify development to Swanky, a Platinum-tier Shopify Plus agency. Their brief: migrate to Store 2.0, eliminate the technical debt, and deliver a theme that was beautiful, lightweight, and fast.</p>
+        </div>
+
+        <div class="content-block">
+            <div class="block-heading">Beyond delivery</div>
+            <p class="body-text">The harder work was capability transfer. Selecting partners. Managing vendor relationships. Building governance. Coaching the internal team to shift from reactive to strategic. The goal was always to step back once the foundation was in place, leaving ARNE able to own their own operations.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Centre Channel</span>
+            <span>3 / 4</span>
+        </div>
+    </div>
+
+    <!-- Page 4: The Outcome -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#96784d" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#96784d" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#96784d">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#96784d">c</text>
+                </svg>
+                <span class="logo-text">Centre Channel</span>
+            </div>
+            <div class="document-type">Client Dossier</div>
+        </div>
+
+        <p class="section-label">03 — The Outcome</p>
+        <h2 class="section-title">Platform ownership</h2>
+
+        <div class="results-grid">
+            <div class="result-item">
+                <div class="result-number">$600k</div>
+                <div class="result-label">Annual licence fees avoided</div>
+            </div>
+            <div class="result-item">
+                <div class="result-number">&lt;12 mo</div>
+                <div class="result-label">Payback on app investment</div>
+            </div>
+            <div class="result-item">
+                <div class="result-number">£550k</div>
+                <div class="result-label">One-time build cost (owned forever)</div>
+            </div>
+            <div class="result-item">
+                <div class="result-number">3 mo</div>
+                <div class="result-label">Theme migration delivery window</div>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p class="quote-text">"Thank you for all of your time and effort on our brilliant new website which is going to play a huge part in the future growth of ARNE. It's amazing to see how far it has come over the last 7 years and this feels like a huge tech milestone as well as the app."</p>
+            <p class="quote-attribution">— ARNE Founder</p>
+        </div>
+
+        <div class="content-block">
+            <div class="block-heading">What made the difference</div>
+            <ul class="takeaway-list">
+                <li>Ownership over rental. Every future investment now goes into enhancing value, not paying for access</li>
+                <li>Capability transfer—the team can now manage updates, launches, and fixes themselves</li>
+                <li>Being present at the transition point where simple becomes complicated and decisions get harder to make with confidence</li>
+            </ul>
+        </div>
+
+        <div class="contact-footer">
+            <p><strong>Centre Channel</strong> helps ambitious retail brands make confident digital investment decisions.</p>
+            <p><a href="mailto:mark@centrechannel.com">mark@centrechannel.com</a> · <a href="https://centrechannel.com">centrechannel.com</a></p>
+        </div>
+
+        <div class="page-footer">
+            <span>Centre Channel</span>
+            <span>4 / 4</span>
+        </div>
+    </div>
+
+</body>
+</html>
