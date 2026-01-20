@@ -511,11 +511,12 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: var(--space-6);
+            max-width: 400px;
+            margin: 0 auto;
         }
         
         @media (min-width: 768px) {
             .credentials__grid {
-                grid-template-columns: repeat(4, 1fr);
                 gap: var(--space-8);
             }
         }
@@ -538,6 +539,16 @@
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--brass);
+        }
+        
+        .credentials__tagline {
+            text-align: center;
+            margin-top: var(--space-7);
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-style: italic;
+            color: var(--silver);
+            letter-spacing: 0.02em;
         }
         
         /* ========================================
@@ -1326,22 +1337,15 @@
                     <div class="credential__number">7-fig</div>
                     <div class="credential__label">Agency Exit</div>
                 </div>
-                <div class="credential">
-                    <div class="credential__number">100%</div>
-                    <div class="credential__label">Client Retention</div>
-                </div>
-                <div class="credential">
-                    <div class="credential__number">#1</div>
-                    <div class="credential__label">App Store Rank</div>
-                </div>
             </div>
+            <p class="credentials__tagline">Independent. Accountable. Present.</p>
         </div>
     </section>
 
     <!-- Trust Section -->
     <section class="trust">
         <div class="container">
-            <p class="trust__text">Experience includes <span class="trust__brands">ARNE · Abbott Lyon · Travel Counsellors · MEDDICC · StoryStream</span></p>
+            <p class="trust__text">Experience includes <span class="trust__brands">Missguided · ARNE · Abbott Lyon · MEDDICC</span></p>
         </div>
     </section>
 
