@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abbott Lyon Case Study | Centre Channel</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        :root {
+            --ink-black: #0a0a0a;
+            --deep-black: #141414;
+            --warm-black: #1a1918;
+            --charcoal: #2a2a2a;
+            --graphite: #3a3a3a;
+            --cream: #f5f2eb;
+            --warm-cream: #ebe6db;
+            --stone: #d8d6d0;
+            --silver: #9a9a9a;
+            --brass: #b8976a;
+            --brass-light: #d4b896;
+            --brass-dark: #96784d;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-size: 11pt;
+            line-height: 1.7;
+            color: var(--ink-black);
+            background: var(--cream);
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm 25mm;
+            margin: 0 auto;
+            background: var(--cream);
+            position: relative;
+            page-break-after: always;
+        }
+        
+        .page:last-child {
+            page-break-after: auto;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15mm;
+            padding-bottom: 8mm;
+            border-bottom: 1px solid var(--stone);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo svg {
+            width: 28px;
+            height: 28px;
+        }
+        
+        .logo-text {
+            font-family: var(--font-body);
+            font-size: 10pt;
+            font-weight: 500;
+            color: var(--ink-black);
+            letter-spacing: 0.05em;
+        }
+        
+        .document-type {
+            font-size: 8pt;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--brass-dark);
+        }
+        
+        .cover-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: calc(297mm - 40mm - 60mm);
+        }
+        
+        .client-label {
+            font-size: 9pt;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--brass-dark);
+            margin-bottom: 8mm;
+        }
+        
+        .cover-title {
+            font-family: var(--font-display);
+            font-size: 32pt;
+            font-weight: 300;
+            line-height: 1.15;
+            color: var(--ink-black);
+            margin-bottom: 10mm;
+            max-width: 90%;
+        }
+        
+        .cover-title em {
+            font-style: italic;
+            color: var(--brass-dark);
+        }
+        
+        .cover-subtitle {
+            font-size: 12pt;
+            font-weight: 400;
+            color: var(--graphite);
+            line-height: 1.6;
+            max-width: 80%;
+            margin-bottom: 15mm;
+        }
+        
+        .cover-meta {
+            display: flex;
+            gap: 20mm;
+            padding-top: 10mm;
+            border-top: 1px solid var(--stone);
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2mm;
+        }
+        
+        .meta-label {
+            font-size: 7pt;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--silver);
+        }
+        
+        .meta-value {
+            font-size: 10pt;
+            font-weight: 500;
+            color: var(--ink-black);
+        }
+        
+        .section-label {
+            font-size: 8pt;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--brass-dark);
+            margin-bottom: 5mm;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 24pt;
+            font-weight: 400;
+            color: var(--ink-black);
+            margin-bottom: 10mm;
+        }
+        
+        .content-block {
+            margin-bottom: 8mm;
+        }
+        
+        .block-heading {
+            font-size: 9pt;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--brass-dark);
+            margin-bottom: 3mm;
+        }
+        
+        .body-text {
+            font-size: 10pt;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--charcoal);
+        }
+        
+        .body-text + .body-text {
+            margin-top: 4mm;
+        }
+        
+        .signal-box {
+            padding: 6mm 8mm;
+            background: var(--warm-cream);
+            border-left: 2px solid var(--brass);
+            margin: 8mm 0;
+        }
+        
+        .signal-box p {
+            font-family: var(--font-display);
+            font-size: 12pt;
+            font-style: italic;
+            color: var(--brass-dark);
+            line-height: 1.6;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6mm;
+            margin-bottom: 10mm;
+        }
+        
+        .result-item {
+            padding: 5mm 6mm;
+            background: var(--warm-cream);
+            border-radius: 2px;
+        }
+        
+        .result-number {
+            font-family: var(--font-display);
+            font-size: 28pt;
+            font-weight: 400;
+            color: var(--brass-dark);
+            line-height: 1;
+            margin-bottom: 2mm;
+        }
+        
+        .result-label {
+            font-size: 8pt;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--graphite);
+        }
+        
+        .quote-block {
+            padding: 8mm 0;
+            border-top: 1px solid var(--stone);
+            border-bottom: 1px solid var(--stone);
+            margin: 8mm 0;
+        }
+        
+        .quote-text {
+            font-family: var(--font-display);
+            font-size: 14pt;
+            font-style: italic;
+            color: var(--ink-black);
+            line-height: 1.5;
+            margin-bottom: 4mm;
+        }
+        
+        .quote-attribution {
+            font-size: 9pt;
+            font-weight: 500;
+            color: var(--brass-dark);
+        }
+        
+        .takeaway-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .takeaway-list li {
+            font-size: 10pt;
+            color: var(--charcoal);
+            padding-left: 5mm;
+            position: relative;
+            margin-bottom: 3mm;
+            line-height: 1.6;
+        }
+        
+        .takeaway-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6em;
+            width: 2mm;
+            height: 2mm;
+            background: var(--brass);
+            border-radius: 50%;
+        }
+        
+        .page-footer {
+            position: absolute;
+            bottom: 20mm;
+            left: 25mm;
+            right: 25mm;
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--silver);
+            padding-top: 5mm;
+            border-top: 1px solid var(--stone);
+        }
+        
+        .contact-footer {
+            margin-top: 10mm;
+            padding-top: 8mm;
+            border-top: 1px solid var(--brass);
+        }
+        
+        .contact-footer p {
+            font-size: 9pt;
+            color: var(--graphite);
+            margin-bottom: 2mm;
+        }
+        
+        .contact-footer strong {
+            color: var(--ink-black);
+        }
+        
+        .contact-footer a {
+            color: var(--brass-dark);
+            text-decoration: none;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .page {
+                margin: 0;
+                box-shadow: none;
+                background: white;
+            }
+        }
+        
+        @media screen {
+            body {
+                background: var(--stone);
+                padding: 20px 0;
+            }
+            
+            .page {
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+
+    <!-- Page 1: Cover -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#96784d" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#96784d" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#96784d">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#96784d">c</text>
+                </svg>
+                <span class="logo-text">Centre Channel</span>
+            </div>
+            <div class="document-type">Client Dossier</div>
+        </div>
+
+        <div class="cover-content">
+            <p class="client-label">ABBOTT LYON</p>
+            <h1 class="cover-title">From enabler to <em>engine.</em></h1>
+            <p class="cover-subtitle">How a fast-scaling personalised jewellery brand transformed its digital platform while maintaining continuous trading on an eight-figure operation.</p>
+            
+            <div class="cover-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Client</span>
+                    <span class="meta-value">Abbott Lyon</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Sector</span>
+                    <span class="meta-value">Personalised Jewellery</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Platform</span>
+                    <span class="meta-value">Shopify Plus</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Engagement</span>
+                    <span class="meta-value">Live Platform Transformation</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>Centre Channel</span>
+            <span>1 / 4</span>
+        </div>
+    </div>
+
+    <!-- Page 2: The Situation -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#96784d" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#96784d" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#96784d">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#96784d">c</text>
+                </svg>
+                <span class="logo-text">Centre Channel</span>
+            </div>
+            <div class="document-type">Client Dossier</div>
+        </div>
+
+        <p class="section-label">01 — The Noise</p>
+        <h2 class="section-title">Growth that outpaced the platform</h2>
+
+        <div class="content-block">
+            <p class="body-text">Abbott Lyon had achieved something remarkable. Ten-fold revenue growth in five years, powered by sharp product development and highly effective Meta and influencer marketing. The brand had built genuine customer love in the personalised jewellery space.</p>
+            <p class="body-text">But the website hadn't kept pace. Agency relationships that once worked had been outgrown. The platform was functional, but it wasn't driving growth. It was simply enabling transactions. The brief from leadership was clear: move from enabler to grower.</p>
+        </div>
+
+        <div class="signal-box">
+            <p>When marketing outperforms platform, you're leaving money on the table. Every visitor who bounces, every basket that's abandoned, every personalisation journey that feels clunky compounds into real revenue loss.</p>
+        </div>
+
+        <div class="content-block">
+            <div class="block-heading">What was at stake</div>
+            <p class="body-text">This wasn't a greenfield build. Abbott Lyon was trading on an eight-figure operation. Traditional replatforms mean new store builds, data migration, switch-overs, and downtime. They needed transformation without disruption. Continuous trading, maintained SEO, uninterrupted marketing activity. The wrong approach could have cost them a peak trading period.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Centre Channel</span>
+            <span>2 / 4</span>
+        </div>
+    </div>
+
+    <!-- Page 3: The Work -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#96784d" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#96784d" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#96784d">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#96784d">c</text>
+                </svg>
+                <span class="logo-text">Centre Channel</span>
+            </div>
+            <div class="document-type">Client Dossier</div>
+        </div>
+
+        <p class="section-label">02 — The Signal</p>
+        <h2 class="section-title">Beyond the retheme</h2>
+
+        <div class="content-block">
+            <div class="block-heading">The pivotal decision</div>
+            <p class="body-text">The initial scope was a Shopify theme refresh. But discovery revealed a harder truth: the product data architecture wasn't fit for purpose. Personalisation journeys were constrained. The visualiser couldn't scale. Without addressing the foundations, a new theme would simply be a fresh coat of paint on the same limitations.</p>
+            <p class="body-text">The recommendation was to expand scope. Transform product data, rebuild personalisation, and deliver the new theme together. It was riskier. It was closer to a replatform than a retheme. But it was the only way to achieve the ambition.</p>
+        </div>
+
+        <div class="content-block">
+            <div class="block-heading">The approach</div>
+            <p class="body-text">A rigorous three-way RFP led to selecting Onstate as the development partner, chosen for their personalisation strategy, experience with complex builds, and creative approach. The build happened live. No new store. No switch-over. Continuous trading throughout, with SEO and marketing activity maintained.</p>
+            <p class="body-text">The iceberg visual tells the story. Above the waterline: UI redesign, visualiser, personalisation journeys. Below: product data transformation, carrier service rebuild, app consolidation, customer accounts, and a new development pipeline.</p>
+        </div>
+
+        <div class="content-block">
+            <div class="block-heading">Beyond delivery</div>
+            <p class="body-text">The harder work was governance. Managing agency relationships. Mitigating risk across multiple workstreams. Ensuring the board had visibility without drowning in detail. Building confidence that this transformation would land on time and on budget.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Centre Channel</span>
+            <span>3 / 4</span>
+        </div>
+    </div>
+
+    <!-- Page 4: The Outcome -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#96784d" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#96784d" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#96784d">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#96784d">c</text>
+                </svg>
+                <span class="logo-text">Centre Channel</span>
+            </div>
+            <div class="document-type">Client Dossier</div>
+        </div>
+
+        <p class="section-label">03 — The Outcome</p>
+        <h2 class="section-title">Platform that performs</h2>
+
+        <div class="results-grid">
+            <div class="result-item">
+                <div class="result-number">+5%</div>
+                <div class="result-label">Conversion rate improvement</div>
+            </div>
+            <div class="result-item">
+                <div class="result-number">+2%</div>
+                <div class="result-label">Average order value increase</div>
+            </div>
+            <div class="result-item">
+                <div class="result-number">9 mo</div>
+                <div class="result-label">RFP to launch</div>
+            </div>
+            <div class="result-item">
+                <div class="result-number">Zero</div>
+                <div class="result-label">Trading days lost</div>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p class="quote-text">"Mark has been a fantastic addition to our team during our website rebuild. His expertise has been invaluable and his attention to detail has mitigated a huge amount of risk. Most importantly his passion for the project and complete flexibility has made him feel like part of the team."</p>
+            <p class="quote-attribution">— Izzi Rowe, Trading and Commercial Director, Abbott Lyon</p>
+        </div>
+
+        <div class="content-block">
+            <div class="block-heading">What made the difference</div>
+            <ul class="takeaway-list">
+                <li>The decision to transform foundations, not just surfaces. Riskier, but essential for realising the full ambition</li>
+                <li>Live transformation approach. Continuous trading, zero downtime, no lost momentum during the build</li>
+                <li>Owned digital assets. Split shipment carrier, personalisation app, product visualiser. Built once, owned forever</li>
+            </ul>
+        </div>
+
+        <div class="contact-footer">
+            <p><strong>Centre Channel</strong> helps ambitious retail brands make confident digital investment decisions.</p>
+            <p><a href="/cdn-cgi/l/email-protection#aec3cfdcc5eecdcbc0dadccbcdc6cfc0c0cbc280cdc1c3"><span class="__cf_email__" data-cfemail="0a676b78614a696f647e786f69626b64646f6624696567">[email&#160;protected]</span></a> · <a href="https://centrechannel.com">centrechannel.com</a></p>
+        </div>
+
+       
