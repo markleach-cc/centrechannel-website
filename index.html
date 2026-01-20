@@ -262,6 +262,72 @@
             }
         }
         
+        /* Hamburger Button */
+        .nav__hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+        
+        .nav__hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--cream);
+            transition: all var(--transition-fast);
+        }
+        
+        .nav__hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .nav__hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .nav__hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
+        /* Mobile Menu */
+        .nav__mobile {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--ink-black);
+            border-top: 1px solid var(--charcoal);
+            padding: var(--space-5) 0;
+        }
+        
+        .nav__mobile-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .nav__mobile-links a {
+            font-size: var(--text-base);
+            color: var(--cream);
+            transition: color var(--transition-fast);
+            padding: var(--space-2) var(--space-4);
+        }
+        
+        .nav__mobile-links a:hover {
+            color: var(--brass);
+        }
+        
         /* ========================================
            BUTTONS & LINKS
         ======================================== */
@@ -1164,6 +1230,14 @@
                 display: none;
             }
             
+            .nav__hamburger {
+                display: flex;
+            }
+            
+            .nav__mobile.active {
+                display: block;
+            }
+            
             .value__quote {
                 font-size: var(--text-2xl);
             }
@@ -1173,6 +1247,9 @@
             }
         }
     </style>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body>
     <!-- Navigation -->
@@ -1191,11 +1268,27 @@
             <ul class="nav__links">
                 <li><a href="/services">How I Work</a></li>
                 <li><a href="/about">About</a></li>
-                <li><a href="/results">Results</a></li>
+                <li><a href="#outcomes">Results</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             
             <a href="#contact" class="nav__cta">Let's Talk</a>
+            
+            <button class="nav__hamburger" id="navHamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="nav__mobile" id="navMobile">
+            <ul class="nav__mobile-links">
+                <li><a href="/services">How I Work</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="#outcomes">Results</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -1248,7 +1341,7 @@
     <!-- Trust Section -->
     <section class="trust">
         <div class="container">
-            <p class="trust__text">Experience includes : <span class="trust__brands">ARNE · Abbott Lyon · Travel Counsellors · MEDDICC · StoryStream</span></p>
+            <p class="trust__text">Experience includes <span class="trust__brands">ARNE · Abbott Lyon · Travel Counsellors · MEDDICC · StoryStream</span></p>
         </div>
     </section>
 
@@ -1368,9 +1461,9 @@
     <section class="about" id="about">
         <div class="container">
             <div class="about__grid">
-               <div class="about__image">
-    <img src="/images/mark-leach.jpg" alt="Mark Leach, Independent eCommerce Director">
-</div>
+                <div class="about__image">
+                    <img src="/images/mark-leach.jpg" alt="Mark Leach, Independent eCommerce Director">
+                </div>
                 <div class="about__content">
                     <p class="label">The Man Behind The Method</p>
                     <h2>I didn't learn eCommerce from a textbook.</h2>
@@ -1393,7 +1486,7 @@
             </div>
             <div class="outcomes__grid">
                 <div class="outcome-card">
-                    <p class="outcome-card__problem"><strong>Problem:</strong> Outgrowing platform, three agencies pitching different solutions, board nervous about £500k+ decision</p>
+                    <p class="outcome-card__problem"><strong>Problem:</strong> Outgrowing platform, three agencies pitching different solutions, board nervous about £300k+ decision</p>
                     <p class="outcome-card__result"><strong>Result:</strong> Led discovery and replatform governance</p>
                     <p class="outcome-card__metrics">+8% conversion · +12% AOV · On time/budget</p>
                 </div>
@@ -1509,6 +1602,24 @@
             } else {
                 nav.classList.remove('scrolled');
             }
+        });
+        
+        // Mobile menu toggle
+        const hamburger = document.getElementById('navHamburger');
+        const mobileMenu = document.getElementById('navMobile');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
         });
     </script>
 </body>

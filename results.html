@@ -218,6 +218,82 @@
             }
         }
         
+        /* Hamburger Button */
+        .nav__hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+        
+        .nav__hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--cream);
+            transition: all var(--transition-fast);
+        }
+        
+        .nav__hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .nav__hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .nav__hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
+        /* Mobile Menu */
+        .nav__mobile {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--ink-black);
+            border-top: 1px solid var(--charcoal);
+            padding: var(--space-5) 0;
+        }
+        
+        .nav__mobile.active {
+            display: block;
+        }
+        
+        .nav__mobile-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .nav__mobile-links a {
+            font-size: var(--text-base);
+            color: var(--cream);
+            transition: color var(--transition-fast);
+            padding: var(--space-2) var(--space-4);
+        }
+        
+        .nav__mobile-links a:hover {
+            color: var(--brass);
+        }
+        
+        @media (max-width: 767px) {
+            .nav__hamburger {
+                display: flex;
+            }
+        }
+        
         /* Buttons */
         .btn {
             display: inline-flex;
@@ -697,6 +773,9 @@
             }
         }
     </style>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body>
     <!-- Navigation -->
@@ -720,6 +799,21 @@
             </ul>
             
             <a href="/#contact" class="nav__cta">Let's Talk</a>
+            
+            <button class="nav__hamburger" id="navHamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <div class="nav__mobile" id="navMobile">
+            <ul class="nav__mobile-links">
+                <li><a href="/services">How I Work</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/results">Results</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -770,6 +864,41 @@
                     </div>
                     
                     <button class="dossier__cta" onclick="openModal('ARNE')">
+                        Request the full dossier
+                    </button>
+                </article>
+                
+                <!-- Abbott Lyon Dossier -->
+                <article class="dossier">
+                    <div class="dossier__header">
+                        <h2 class="dossier__client">Abbott Lyon</h2>
+                        <p class="dossier__meta">Personalised jewellery · Shopify Plus</p>
+                    </div>
+                    
+                    <div class="dossier__content">
+                        <div class="dossier__section">
+                            <p class="dossier__section-label">The noise</p>
+                            <p class="dossier__text">Ten-fold growth in five years, but the platform hadn't kept pace. Marketing was driving traffic; the website wasn't converting it. An eight-figure operation needing transformation without disruption.</p>
+                        </div>
+                        
+                        <div class="dossier__section">
+                            <p class="dossier__section-label dossier__section-label--signal">The signal</p>
+                            <p class="dossier__signal">Move from enabler to engine.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dossier__stats">
+                        <div class="dossier__stat">
+                            <span class="dossier__stat-value">+5%</span>
+                            <span class="dossier__stat-label">Conversion rate</span>
+                        </div>
+                        <div class="dossier__stat">
+                            <span class="dossier__stat-value">Zero</span>
+                            <span class="dossier__stat-label">Trading days lost</span>
+                        </div>
+                    </div>
+                    
+                    <button class="dossier__cta" onclick="openModal('Abbott Lyon')">
                         Request the full dossier
                     </button>
                 </article>
@@ -857,6 +986,24 @@
             } else {
                 nav.classList.remove('scrolled');
             }
+        });
+        
+        // Mobile menu toggle
+        const hamburger = document.getElementById('navHamburger');
+        const mobileMenu = document.getElementById('navMobile');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
         });
         
         // Modal functionality
