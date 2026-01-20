@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Replatforming Projects Drift (And How Governance Fixes It) | Centre Channel</title>
+    <meta name="description" content="Replatforming projects don't fail because of bad technology. They fail because nobody says 'No' to scope creep.">
+    
+    <meta property="og:title" content="Why Replatforming Projects Drift | Centre Channel">
+    <meta property="og:description" content="Replatforming projects don't fail because of bad technology. They fail because nobody says 'No' to scope creep.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://centrechannel.com/insights/replatforming-governance">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <style>
+        :root {
+            --ink-black: #0a0a0a;
+            --deep-black: #141414;
+            --warm-black: #1a1918;
+            --charcoal: #2a2a2a;
+            --graphite: #3a3a3a;
+            --cream: #f5f2eb;
+            --warm-white: #faf9f7;
+            --stone: #e8e4dc;
+            --silver: #9a9a9a;
+            --brass: #b8976a;
+            --brass-light: #d4bc94;
+            --brass-dark: #96784d;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --text-xs: 0.6875rem;
+            --text-sm: 0.8125rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 2rem;
+            --text-4xl: 2.5rem;
+            --text-5xl: 3rem;
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+            --space-7: 48px;
+            --space-8: 64px;
+            --space-9: 96px;
+            --space-10: 128px;
+            --max-width: 1200px;
+            --max-width-narrow: 680px;
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+        }
+        
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); font-size: var(--text-base); line-height: 1.6; color: var(--cream); background: var(--ink-black); }
+        a { color: inherit; text-decoration: none; }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-5); }
+        .container--narrow { max-width: var(--max-width-narrow); }
+        
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-5) 0; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: all var(--transition-base); }
+        .nav.scrolled { padding: var(--space-4) 0; border-bottom-color: var(--charcoal); }
+        .nav__inner { display: flex; align-items: center; justify-content: space-between; }
+        .nav__logo { display: flex; align-items: center; gap: var(--space-3); }
+        .nav__logo svg { width: 40px; height: 40px; }
+        .nav__logo-text { font-size: var(--text-sm); font-weight: 500; letter-spacing: 0.05em; }
+        @media (max-width: 767px) { .nav__logo-text { display: none; } }
+        .nav__links { display: flex; align-items: center; gap: var(--space-6); list-style: none; }
+        .nav__links a { font-size: var(--text-sm); color: rgba(245, 242, 235, 0.7); transition: color var(--transition-fast); }
+        .nav__links a:hover { color: var(--cream); }
+        .nav__cta { display: none; font-size: var(--text-sm); color: var(--brass); transition: color var(--transition-fast); }
+        .nav__cta:hover { color: var(--brass-light); }
+        @media (min-width: 768px) { .nav__cta { display: inline-flex; } }
+        .nav__hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 32px; height: 32px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 1001; }
+        .nav__hamburger span { display: block; width: 100%; height: 2px; background: var(--cream); transition: all var(--transition-fast); }
+        .nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav__hamburger.active span:nth-child(2) { opacity: 0; }
+        .nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .nav__mobile { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--ink-black); border-top: 1px solid var(--charcoal); padding: var(--space-5) 0; }
+        .nav__mobile.active { display: block; }
+        .nav__mobile-links { list-style: none; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+        .nav__mobile-links a { font-size: var(--text-base); color: var(--cream); padding: var(--space-2) var(--space-4); }
+        @media (max-width: 767px) { .nav__links { display: none; } .nav__hamburger { display: flex; } }
+        
+        .article-header { padding-top: calc(var(--space-10) + 60px); padding-bottom: var(--space-7); }
+        .article-header__back { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--silver); margin-bottom: var(--space-6); transition: color var(--transition-fast); }
+        .article-header__back:hover { color: var(--brass); }
+        .article-header__back svg { width: 16px; height: 16px; }
+        .article-header__meta { font-size: var(--text-sm); color: var(--brass); margin-bottom: var(--space-4); }
+        .article-header__title { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 300; line-height: 1.2; color: var(--cream); }
+        @media (min-width: 768px) { .article-header__title { font-size: var(--text-5xl); } }
+        
+        .article-content { padding-bottom: var(--space-9); }
+        .article-content p { font-size: var(--text-lg); line-height: 1.8; color: rgba(245, 242, 235, 0.85); margin-bottom: var(--space-5); }
+        .article-content p:first-of-type { font-size: var(--text-xl); color: var(--cream); }
+        .article-content h2 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 400; color: var(--cream); margin-top: var(--space-8); margin-bottom: var(--space-5); }
+        .article-content h3 { font-family: var(--font-body); font-size: var(--text-lg); font-weight: 600; color: var(--brass); margin-top: var(--space-6); margin-bottom: var(--space-3); }
+        .article-content strong { color: var(--cream); font-weight: 500; }
+        .article-content em { font-style: italic; }
+        .article-content blockquote { margin: var(--space-6) 0; padding-left: var(--space-5); border-left: 2px solid var(--brass); font-family: var(--font-display); font-size: var(--text-xl); font-style: italic; color: var(--brass); }
+        .article-content ul { margin: var(--space-5) 0; padding-left: var(--space-5); }
+        .article-content li { font-size: var(--text-lg); line-height: 1.8; color: rgba(245, 242, 235, 0.85); margin-bottom: var(--space-3); }
+        
+        .article-cta { padding: var(--space-7); background: var(--deep-black); border: 1px solid var(--charcoal); margin-top: var(--space-8); }
+        .article-cta__text { font-size: var(--text-lg); color: rgba(245, 242, 235, 0.85); margin-bottom: var(--space-5); }
+        .article-cta__link { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); font-weight: 500; color: var(--brass); transition: color var(--transition-fast); }
+        .article-cta__link:hover { color: var(--brass-light); }
+        
+        .footer { padding: var(--space-8) 0; border-top: 1px solid var(--charcoal); background: var(--deep-black); }
+        .footer__inner { display: flex; flex-direction: column; gap: var(--space-6); }
+        @media (min-width: 768px) { .footer__inner { flex-direction: row; justify-content: space-between; align-items: center; } }
+        .footer__brand { display: flex; align-items: center; gap: var(--space-4); }
+        .footer__brand svg { width: 40px; height: 40px; }
+        .footer__brand-text { font-size: var(--text-sm); color: var(--silver); }
+        .footer__links { display: flex; gap: var(--space-6); }
+        .footer__links a { font-size: var(--text-sm); color: var(--silver); transition: color var(--transition-fast); }
+        .footer__links a:hover { color: var(--brass); }
+        
+        @media (max-width: 767px) { .article-header { padding-top: calc(var(--space-9) + 40px); } }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <div class="container nav__inner">
+            <a href="/" class="nav__logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                </svg>
+                <span class="nav__logo-text">Centre Channel</span>
+            </a>
+            <ul class="nav__links">
+                <li><a href="/services">How I Work</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/results">Results</a></li>
+                <li><a href="/insights">Insights</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+            <a href="/#contact" class="nav__cta">Let's Talk</a>
+            <button class="nav__hamburger" id="navHamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="nav__mobile" id="navMobile">
+            <ul class="nav__mobile-links">
+                <li><a href="/services">How I Work</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/results">Results</a></li>
+                <li><a href="/insights">Insights</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="container container--narrow">
+            <a href="/insights" class="article-header__back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to Insights
+            </a>
+            <p class="article-header__meta">10 December 2025</p>
+            <h1 class="article-header__title">Why Replatforming Projects Drift (And How Governance Fixes It)</h1>
+        </div>
+    </header>
+
+    <article class="article-content">
+        <div class="container container--narrow">
+            <p>There's a wave of replatforming happening right now.</p>
+            
+            <p>Magento 1 reached end of life. Magento 2 has proven expensive to maintain. Salesforce Commerce Cloud is losing ground. And Shopify has made an aggressive push into enterprise, offering a compelling alternative for brands in the £20m to £150m range.</p>
+            
+            <p>The business case often looks straightforward: Lower total cost of ownership. Faster time to market. Access to a broader ecosystem of apps and talent. Boards are approving these projects because the numbers make sense on paper.</p>
+            
+            <p>But the numbers on paper rarely survive contact with reality.</p>
+            
+            <p>Most estimates suggest around half of major platform migrations go over budget or launch late. Some never launch at all. And when that happens, it's rarely the agency who takes the blame.</p>
+            
+            <p>I've been involved in replatforming projects from multiple angles: as the client leading the migration, as an advisor to brands mid-flight, and as the person called in when things have gone wrong. The patterns are remarkably consistent.</p>
+            
+            <h2>The 3 Phases Where Projects Fail</h2>
+            
+            <p>When I look at a replatforming project, I'm looking at risk across three phases.</p>
+            
+            <h3>Scoping</h3>
+            <p>This is where the budget gets set based on assumptions that won't survive discovery. Requirements are gathered from stakeholders who don't fully understand the current system. The agency estimates based on what they're told, not what they'll find.</p>
+            
+            <h3>Build</h3>
+            <p>This is where scope creep takes hold. Feature requests accumulate. The "like-for-like" mentality kicks in. Every stakeholder wants their thing included. The agency says yes because every yes increases the project value.</p>
+            
+            <h3>Migration</h3>
+            <p>This is where projects actually die. Data is messier than anyone expected. Integrations that "just worked" turn out to be undocumented custom builds. Go-live gets pushed while the team scrambles to fix what nobody planned for.</p>
+            
+            <p>Most governance focuses on phase two. But the damage is usually done in phases one and three, where visibility is lowest.</p>
+            
+            <h2>The "Accumulated Yes" Problem</h2>
+            
+            <p>Development agencies aren't to blame for scope creep. They're responding rationally to the incentives in front of them.</p>
+            
+            <p>You ask for a feature, they quote for it. You ask for another, they quote again. Every "yes" increases the project value. Every "no" risks losing the relationship, or losing the work to a competitor who will say yes.</p>
+            
+            <p>The problem is that there's nobody in the room whose job is to say "not yet" or "do we actually need this?"</p>
+            
+            <p>This is a version of the same Principal-Agent Problem I see in agency retainers. The incentives are misaligned, and unless someone names it, nothing changes.</p>
+            
+            <h2>The "Like-for-Like" Trap</h2>
+            
+            <p>The most expensive sentence in eCommerce is: <strong>"We want it to work exactly like the old site."</strong></p>
+            
+            <p>I understand the instinct. You've spent years refining your setup. Your team knows how it works. Your customers are used to it.</p>
+            
+            <p>But Shopify has opinions. Strong ones. About checkout, about product data structure, about how apps integrate. You can bend it to your will with enough custom code and enough budget. But every customisation creates future Technical Fragility. Every workaround becomes something that can't be updated without risk.</p>
+            
+            <p>The businesses I've seen migrate successfully do something different. They treat the replatform as a chance to simplify.</p>
+            
+            <p>What did we build five years ago that nobody uses? What custom feature made sense for our old setup but has a native equivalent now? What can we stop doing?</p>
+            
+            <p>This requires someone willing to challenge the brief. Not the agency. They're not paid to reduce scope.</p>
+            
+            <h2>The Opportunity Cost of Delay ("Launch Drag")</h2>
+            
+            <p>The problem isn't just the budget overrun. It's the growth you're not capturing while the project drags on.</p>
+            
+            <p>A three-month delay on a £40m brand isn't just £100k in extra agency fees. It's a quarter of trading on a platform you've already decided isn't fit for purpose. It's Black Friday on legacy infrastructure. It's the roadmap items that can't start until migration is complete.</p>
+            
+            <p>When I assess replatforming projects, I look at what I call <strong>Launch Drag</strong>: the cumulative cost of every week the project runs beyond its original timeline.</p>
+            
+            <p>For most brands I work with, Launch Drag runs between £50k and £150k per month. That changes how you think about governance investment.</p>
+            
+            <h2>The Missing Role: Commercial Governance</h2>
+            
+            <p>Every replatforming project needs someone who understands both sides and has the board's trust. This is someone on the client side, not the agency side, whose job is to:</p>
+            
+            <ul>
+                <li>Challenge feature requests against commercial priority. Not everything needs to be in v1.</li>
+                <li>Say "no" or "not now" without damaging the relationship. The agency can't do this.</li>
+                <li>Translate technical trade-offs into business outcomes. Most boards don't speak developer. Most developers don't speak P&L.</li>
+                <li>Protect the timeline when scope starts to creep. Someone has to hold the line.</li>
+            </ul>
+            
+            <p>Most brands don't have this person internally. Their Head of Ecommerce is too close to the detail. Their CTO is too removed from the commercial reality. And typical project managers don't have the domain expertise.</p>
+            
+            <p>So nobody's doing it. And the project drifts.</p>
+            
+            <div class="article-cta">
+                <p class="article-cta__text">If you're starting a Shopify Plus migration, or you're mid-flight and worried about where it's heading, I sit on your side of the table. Not to replace your agency. But to ask the questions that protect your timeline and budget.</p>
+                <a href="/#contact" class="article-cta__link">
+                    Get in touch
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                </svg>
+                <span class="footer__brand-text">Centre Channel Ltd</span>
+            </div>
+            <div class="footer__links">
+                <a href="/about">About</a>
+                <a href="/services">Services</a>
+                <a href="/#contact">Contact</a>
+                <a href="https://www.linkedin.com/in/markleach/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => { if (window.scrollY > 50) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); } });
+        const hamburger = document.getElementById('navHamburger');
+        const mobileMenu = document.getElementById('navMobile');
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileMenu.classList.toggle('active'); });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); mobileMenu.classList.remove('active'); }); });
+    </script>
+</body>
+</html>

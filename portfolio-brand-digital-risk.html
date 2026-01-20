@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Your Portfolio Brand's Digital Operation Is Stuck | Centre Channel</title>
+    <meta name="description" content="Growth stalled post-acquisition? It's usually infrastructure, not strategy. The three hidden risks in PE portfolio brands.">
+    
+    <meta property="og:title" content="Why Your Portfolio Brand's Digital Operation Is Stuck | Centre Channel">
+    <meta property="og:description" content="Growth stalled post-acquisition? It's usually infrastructure, not strategy.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://centrechannel.com/insights/portfolio-brand-digital-risk">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <style>
+        :root {
+            --ink-black: #0a0a0a;
+            --deep-black: #141414;
+            --warm-black: #1a1918;
+            --charcoal: #2a2a2a;
+            --graphite: #3a3a3a;
+            --cream: #f5f2eb;
+            --warm-white: #faf9f7;
+            --stone: #e8e4dc;
+            --silver: #9a9a9a;
+            --brass: #b8976a;
+            --brass-light: #d4bc94;
+            --brass-dark: #96784d;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --text-xs: 0.6875rem;
+            --text-sm: 0.8125rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 2rem;
+            --text-4xl: 2.5rem;
+            --text-5xl: 3rem;
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+            --space-7: 48px;
+            --space-8: 64px;
+            --space-9: 96px;
+            --space-10: 128px;
+            --max-width: 1200px;
+            --max-width-narrow: 680px;
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+        }
+        
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); font-size: var(--text-base); line-height: 1.6; color: var(--cream); background: var(--ink-black); }
+        a { color: inherit; text-decoration: none; }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-5); }
+        .container--narrow { max-width: var(--max-width-narrow); }
+        
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-5) 0; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: all var(--transition-base); }
+        .nav.scrolled { padding: var(--space-4) 0; border-bottom-color: var(--charcoal); }
+        .nav__inner { display: flex; align-items: center; justify-content: space-between; }
+        .nav__logo { display: flex; align-items: center; gap: var(--space-3); }
+        .nav__logo svg { width: 40px; height: 40px; }
+        .nav__logo-text { font-size: var(--text-sm); font-weight: 500; letter-spacing: 0.05em; }
+        @media (max-width: 767px) { .nav__logo-text { display: none; } }
+        .nav__links { display: flex; align-items: center; gap: var(--space-6); list-style: none; }
+        .nav__links a { font-size: var(--text-sm); color: rgba(245, 242, 235, 0.7); transition: color var(--transition-fast); }
+        .nav__links a:hover { color: var(--cream); }
+        .nav__cta { display: none; font-size: var(--text-sm); color: var(--brass); transition: color var(--transition-fast); }
+        .nav__cta:hover { color: var(--brass-light); }
+        @media (min-width: 768px) { .nav__cta { display: inline-flex; } }
+        .nav__hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 32px; height: 32px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 1001; }
+        .nav__hamburger span { display: block; width: 100%; height: 2px; background: var(--cream); transition: all var(--transition-fast); }
+        .nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav__hamburger.active span:nth-child(2) { opacity: 0; }
+        .nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .nav__mobile { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--ink-black); border-top: 1px solid var(--charcoal); padding: var(--space-5) 0; }
+        .nav__mobile.active { display: block; }
+        .nav__mobile-links { list-style: none; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+        .nav__mobile-links a { font-size: var(--text-base); color: var(--cream); padding: var(--space-2) var(--space-4); }
+        @media (max-width: 767px) { .nav__links { display: none; } .nav__hamburger { display: flex; } }
+        
+        .article-header { padding-top: calc(var(--space-10) + 60px); padding-bottom: var(--space-7); }
+        .article-header__back { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--silver); margin-bottom: var(--space-6); transition: color var(--transition-fast); }
+        .article-header__back:hover { color: var(--brass); }
+        .article-header__back svg { width: 16px; height: 16px; }
+        .article-header__meta { font-size: var(--text-sm); color: var(--brass); margin-bottom: var(--space-4); }
+        .article-header__title { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 300; line-height: 1.2; color: var(--cream); }
+        @media (min-width: 768px) { .article-header__title { font-size: var(--text-5xl); } }
+        
+        .article-content { padding-bottom: var(--space-9); }
+        .article-content p { font-size: var(--text-lg); line-height: 1.8; color: rgba(245, 242, 235, 0.85); margin-bottom: var(--space-5); }
+        .article-content p:first-of-type { font-size: var(--text-xl); color: var(--cream); }
+        .article-content h2 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 400; color: var(--cream); margin-top: var(--space-8); margin-bottom: var(--space-5); }
+        .article-content h3 { font-family: var(--font-body); font-size: var(--text-lg); font-weight: 600; color: var(--brass); margin-top: var(--space-6); margin-bottom: var(--space-3); }
+        .article-content strong { color: var(--cream); font-weight: 500; }
+        .article-content em { font-style: italic; }
+        .article-content blockquote { margin: var(--space-6) 0; padding-left: var(--space-5); border-left: 2px solid var(--brass); font-family: var(--font-display); font-size: var(--text-xl); font-style: italic; color: var(--brass); }
+        
+        .article-cta { padding: var(--space-7); background: var(--deep-black); border: 1px solid var(--charcoal); margin-top: var(--space-8); }
+        .article-cta__text { font-size: var(--text-lg); color: rgba(245, 242, 235, 0.85); margin-bottom: var(--space-5); }
+        .article-cta__link { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); font-weight: 500; color: var(--brass); transition: color var(--transition-fast); }
+        .article-cta__link:hover { color: var(--brass-light); }
+        
+        .footer { padding: var(--space-8) 0; border-top: 1px solid var(--charcoal); background: var(--deep-black); }
+        .footer__inner { display: flex; flex-direction: column; gap: var(--space-6); }
+        @media (min-width: 768px) { .footer__inner { flex-direction: row; justify-content: space-between; align-items: center; } }
+        .footer__brand { display: flex; align-items: center; gap: var(--space-4); }
+        .footer__brand svg { width: 40px; height: 40px; }
+        .footer__brand-text { font-size: var(--text-sm); color: var(--silver); }
+        .footer__links { display: flex; gap: var(--space-6); }
+        .footer__links a { font-size: var(--text-sm); color: var(--silver); transition: color var(--transition-fast); }
+        .footer__links a:hover { color: var(--brass); }
+        
+        @media (max-width: 767px) { .article-header { padding-top: calc(var(--space-9) + 40px); } }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <div class="container nav__inner">
+            <a href="/" class="nav__logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                </svg>
+                <span class="nav__logo-text">Centre Channel</span>
+            </a>
+            <ul class="nav__links">
+                <li><a href="/services">How I Work</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/results">Results</a></li>
+                <li><a href="/insights">Insights</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+            <a href="/#contact" class="nav__cta">Let's Talk</a>
+            <button class="nav__hamburger" id="navHamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="nav__mobile" id="navMobile">
+            <ul class="nav__mobile-links">
+                <li><a href="/services">How I Work</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/results">Results</a></li>
+                <li><a href="/insights">Insights</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="container container--narrow">
+            <a href="/insights" class="article-header__back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to Insights
+            </a>
+            <p class="article-header__meta">11 December 2025</p>
+            <h1 class="article-header__title">Why Your Portfolio Brand's Digital Operation Is Stuck (And Where I Usually Find The Problem)</h1>
+        </div>
+    </header>
+
+    <article class="article-content">
+        <div class="container container--narrow">
+            <p>Private equity has poured significant capital into fashion, beauty and lifestyle brands over the past decade. The thesis is often compelling. A strong consumer brand with digital growth potential, operational improvements to unlock, and a clear path to exit.</p>
+            
+            <p>But eighteen months after acquisition, the call often comes. Growth has stalled. The digital team is busy but nothing's moving. The board is asking questions nobody can answer clearly.</p>
+            
+            <p>The assumption is usually that this is a strategy problem, or a people problem. In my experience, it's more often an infrastructure problem. Not the systems themselves, but the way they've been built, maintained and governed over time.</p>
+            
+            <p>This matters because it changes what needs to happen next. Strategy work won't fix fragile integrations. A new hire won't solve undocumented dependencies. And replacing an agency won't help if the brand doesn't own its own assets.</p>
+            
+            <h2>The 3 categories of hidden risk</h2>
+            
+            <p>When I assess a portfolio brand's digital operation, I'm looking for risks that don't show up in the board pack. These typically fall into three categories.</p>
+            
+            <h3>Technical fragility</h3>
+            <p>Systems that work, but only just. Custom integrations nobody understands. Themes that can't be updated. Infrastructure held together by decisions made years ago that nobody remembers.</p>
+            
+            <h3>Knowledge concentration</h3>
+            <p>Critical capability that lives in one person's head, or one agency's account, or one contractor's undocumented process. The business functions, but it's more dependent than anyone realises.</p>
+            
+            <h3>Data confusion</h3>
+            <p>Multiple sources of truth that contradict each other. Metrics that vary depending on who's presenting. Decisions being made on numbers that don't reflect operational reality.</p>
+            
+            <p>These aren't failures of competence. They're the natural accumulation of years of trading, growth, and pragmatic short-term decisions. Every brand has some of this. The question is how much, and whether anyone's mapped it.</p>
+            
+            <h2>The Common Red Flags</h2>
+            
+            <p>Within those three categories, certain patterns appear again and again.</p>
+            
+            <h3>The integration nobody understands</h3>
+            <p>The stock system talks to Shopify via a custom connector built three years ago by a developer who's moved on. There's no documentation. It works, so nobody's touched it. Until something changes and nobody knows how to fix it.</p>
+            
+            <h3>The theme that can't be updated</h3>
+            <p>Five years of customisation layered on top of a Shopify theme. Every update is a risk. Simple changes take weeks. The team isn't slow. They're navigating a minefield nobody mapped.</p>
+            
+            <h3>The agency that holds the keys</h3>
+            <p>Paid media performance looks fine, but the agency owns the ad account. The pixel history, the audience data, the learnings from years of testing. If the relationship ends, the brand starts from scratch.</p>
+            
+            <h3>The contractor who holds everything</h3>
+            <p>One freelancer built the integrations, maintains the theme, fixes things when they break. They're not employed. They have no notice period. They could disappear tomorrow.</p>
+            
+            <h3>The data you can't trust</h3>
+            <p>GA4 says one thing. Shopify says another. The warehouse has a third version. Which number is the business actually running on?</p>
+            
+            <h2>Impact on EBITDA and Exit Value</h2>
+            
+            <p>None of this shows up in EBITDA. Revenue is revenue. The monthly report says everything's fine.</p>
+            
+            <p>But these are the reasons growth has stalled. The reasons every improvement takes longer than it should. The reasons the team seems stuck even though they're working hard.</p>
+            
+            <p>They're not strategy problems. They're operational drag.</p>
+            
+            <p>This is relevant to value creation because it changes the cost and timeline of improvement. A brand with clean infrastructure can move quickly. A brand with hidden fragility will spend the first twelve months just getting to stable.</p>
+            
+            <p>In my experience, the brands that navigate this well do two things. First, they acknowledge the reality rather than assuming the operation is cleaner than it is. Second, they invest in understanding what they've inherited before trying to change it.</p>
+            
+            <h2>The 'Technical Debt' Reality</h2>
+            
+            <p>There's a useful comparison to the early days of digital transformation in retail. A decade ago, many brands rushed to build ecommerce capability quickly, often with scrappy solutions and pragmatic shortcuts. That was the right call at the time. Speed mattered more than elegance.</p>
+            
+            <p>But the brands that scaled successfully were the ones who eventually went back and rebuilt the foundations. The ones who didn't are still carrying that debt, often without realising how much it's costing them.</p>
+            
+            <p>The same dynamic plays out in PE-backed brands. The scrappy decisions that got the business to acquisition are not the same decisions that will get it to exit. At some point, someone has to clean up the infrastructure. The only question is whether that's factored into the plan.</p>
+            
+            <h2>The Fix: Diagnostic vs. Governance</h2>
+            
+            <p>Not every portfolio brand needs the same intervention.</p>
+            
+            <p>Some need a full diagnostic, a clear map of what's fragile and what's solid, before any operational changes begin. This is typically three to five days of focused assessment.</p>
+            
+            <p>Others already know something's wrong but can't pinpoint it. Here, the value is often in naming the problem clearly enough that the team can act on it.</p>
+            
+            <p>And some are mid-transformation, with a replatform or digital overhaul already underway, but without confidence that it's heading in the right direction. In these cases, governance and oversight can prevent the project from drifting.</p>
+            
+            <div class="article-cta">
+                <p class="article-cta__text">If your portfolio brand is stuck, I can usually tell you why within a few days. Not a transformation programme. Not a long consulting engagement. Just a clear-eyed look at what's actually going on, and what needs to happen to unlock it.</p>
+                <a href="/#contact" class="article-cta__link">
+                    Get in touch
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                </svg>
+                <span class="footer__brand-text">Centre Channel Ltd</span>
+            </div>
+            <div class="footer__links">
+                <a href="/about">About</a>
+                <a href="/services">Services</a>
+                <a href="/#contact">Contact</a>
+                <a href="https://www.linkedin.com/in/markleach/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => { if (window.scrollY > 50) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); } });
+        const hamburger = document.getElementById('navHamburger');
+        const mobileMenu = document.getElementById('navMobile');
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileMenu.classList.toggle('active'); });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); mobileMenu.classList.remove('active'); }); });
+    </script>
+</body>
+</html>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Discovery Phases Fail Scale-Ups | Centre Channel</title>
+    <meta name="description" content="Scale-ups often pay six figures for Discovery phases that simply tell them what they already know. This is the Learning Tax.">
+    
+    <meta property="og:title" content="Why Discovery Phases Fail Scale-Ups | Centre Channel">
+    <meta property="og:description" content="Scale-ups often pay six figures for Discovery phases that simply tell them what they already know.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://centrechannel.com/insights/discovery-phases-fail-scale-ups">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <style>
+        :root {
+            --ink-black: #0a0a0a;
+            --deep-black: #141414;
+            --warm-black: #1a1918;
+            --charcoal: #2a2a2a;
+            --graphite: #3a3a3a;
+            --cream: #f5f2eb;
+            --warm-white: #faf9f7;
+            --stone: #e8e4dc;
+            --silver: #9a9a9a;
+            --brass: #b8976a;
+            --brass-light: #d4bc94;
+            --brass-dark: #96784d;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --text-xs: 0.6875rem;
+            --text-sm: 0.8125rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 2rem;
+            --text-4xl: 2.5rem;
+            --text-5xl: 3rem;
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+            --space-7: 48px;
+            --space-8: 64px;
+            --space-9: 96px;
+            --space-10: 128px;
+            --max-width: 1200px;
+            --max-width-narrow: 680px;
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--cream);
+            background: var(--ink-black);
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-5);
+        }
+        
+        .container--narrow {
+            max-width: var(--max-width-narrow);
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--space-5) 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid transparent;
+            transition: all var(--transition-base);
+        }
+        
+        .nav.scrolled {
+            padding: var(--space-4) 0;
+            border-bottom-color: var(--charcoal);
+        }
+        
+        .nav__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .nav__logo svg {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .nav__logo-text {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        
+        @media (max-width: 767px) {
+            .nav__logo-text {
+                display: none;
+            }
+        }
+        
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-6);
+            list-style: none;
+        }
+        
+        .nav__links a {
+            font-size: var(--text-sm);
+            color: rgba(245, 242, 235, 0.7);
+            transition: color var(--transition-fast);
+        }
+        
+        .nav__links a:hover {
+            color: var(--cream);
+        }
+        
+        .nav__cta {
+            display: none;
+            font-size: var(--text-sm);
+            color: var(--brass);
+            transition: color var(--transition-fast);
+        }
+        
+        .nav__cta:hover {
+            color: var(--brass-light);
+        }
+        
+        @media (min-width: 768px) {
+            .nav__cta {
+                display: inline-flex;
+            }
+        }
+        
+        .nav__hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+        
+        .nav__hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--cream);
+            transition: all var(--transition-fast);
+        }
+        
+        .nav__hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .nav__hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .nav__hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
+        .nav__mobile {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--ink-black);
+            border-top: 1px solid var(--charcoal);
+            padding: var(--space-5) 0;
+        }
+        
+        .nav__mobile.active {
+            display: block;
+        }
+        
+        .nav__mobile-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .nav__mobile-links a {
+            font-size: var(--text-base);
+            color: var(--cream);
+            padding: var(--space-2) var(--space-4);
+        }
+        
+        @media (max-width: 767px) {
+            .nav__links {
+                display: none;
+            }
+            
+            .nav__hamburger {
+                display: flex;
+            }
+        }
+        
+        /* Article Header */
+        .article-header {
+            padding-top: calc(var(--space-10) + 60px);
+            padding-bottom: var(--space-7);
+        }
+        
+        .article-header__back {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            color: var(--silver);
+            margin-bottom: var(--space-6);
+            transition: color var(--transition-fast);
+        }
+        
+        .article-header__back:hover {
+            color: var(--brass);
+        }
+        
+        .article-header__back svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .article-header__meta {
+            font-size: var(--text-sm);
+            color: var(--brass);
+            margin-bottom: var(--space-4);
+        }
+        
+        .article-header__title {
+            font-family: var(--font-display);
+            font-size: var(--text-4xl);
+            font-weight: 300;
+            line-height: 1.2;
+            color: var(--cream);
+        }
+        
+        @media (min-width: 768px) {
+            .article-header__title {
+                font-size: var(--text-5xl);
+            }
+        }
+        
+        /* Article Content */
+        .article-content {
+            padding-bottom: var(--space-9);
+        }
+        
+        .article-content p {
+            font-size: var(--text-lg);
+            line-height: 1.8;
+            color: rgba(245, 242, 235, 0.85);
+            margin-bottom: var(--space-5);
+        }
+        
+        .article-content p:first-of-type {
+            font-size: var(--text-xl);
+            color: var(--cream);
+        }
+        
+        .article-content h2 {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            color: var(--cream);
+            margin-top: var(--space-8);
+            margin-bottom: var(--space-5);
+        }
+        
+        .article-content h3 {
+            font-family: var(--font-body);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--brass);
+            margin-top: var(--space-6);
+            margin-bottom: var(--space-3);
+        }
+        
+        .article-content strong {
+            color: var(--cream);
+            font-weight: 500;
+        }
+        
+        .article-content em {
+            font-style: italic;
+        }
+        
+        .article-content blockquote {
+            margin: var(--space-6) 0;
+            padding-left: var(--space-5);
+            border-left: 2px solid var(--brass);
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-style: italic;
+            color: var(--brass);
+        }
+        
+        /* Article CTA */
+        .article-cta {
+            padding: var(--space-7);
+            background: var(--deep-black);
+            border: 1px solid var(--charcoal);
+            margin-top: var(--space-8);
+        }
+        
+        .article-cta__text {
+            font-size: var(--text-lg);
+            color: rgba(245, 242, 235, 0.85);
+            margin-bottom: var(--space-5);
+        }
+        
+        .article-cta__link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--brass);
+            transition: color var(--transition-fast);
+        }
+        
+        .article-cta__link:hover {
+            color: var(--brass-light);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: var(--space-8) 0;
+            border-top: 1px solid var(--charcoal);
+            background: var(--deep-black);
+        }
+        
+        .footer__inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+        
+        @media (min-width: 768px) {
+            .footer__inner {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        
+        .footer__brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .footer__brand svg {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .footer__brand-text {
+            font-size: var(--text-sm);
+            color: var(--silver);
+        }
+        
+        .footer__links {
+            display: flex;
+            gap: var(--space-6);
+        }
+        
+        .footer__links a {
+            font-size: var(--text-sm);
+            color: var(--silver);
+            transition: color var(--transition-fast);
+        }
+        
+        .footer__links a:hover {
+            color: var(--brass);
+        }
+        
+        @media (max-width: 767px) {
+            .article-header {
+                padding-top: calc(var(--space-9) + 40px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="container nav__inner">
+            <a href="/" class="nav__logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                </svg>
+                <span class="nav__logo-text">Centre Channel</span>
+            </a>
+            
+            <ul class="nav__links">
+                <li><a href="/services">How I Work</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/results">Results</a></li>
+                <li><a href="/insights">Insights</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+            
+            <a href="/#contact" class="nav__cta">Let's Talk</a>
+            
+            <button class="nav__hamburger" id="navHamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <div class="nav__mobile" id="navMobile">
+            <ul class="nav__mobile-links">
+                <li><a href="/services">How I Work</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/results">Results</a></li>
+                <li><a href="/insights">Insights</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="container container--narrow">
+            <a href="/insights" class="article-header__back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Insights
+            </a>
+            <p class="article-header__meta">16 December 2025</p>
+            <h1 class="article-header__title">Why Discovery Phases Fail Scale-Ups (And When They're Actually Worth It)</h1>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="article-content">
+        <div class="container container--narrow">
+            <p>I recently sat in on a pitch that crystallised something I've been thinking about for years.</p>
+            
+            <p>A PE-backed scale-up doing £100m revenue, clear market position, experienced leadership team, had been told by their investors to "get serious about AI." So they'd brought in a well credentialed consultancy. European footprint, impressive client list, a structured methodology honed across hundreds of engagements.</p>
+            
+            <p>The consultancy presented a three phase programme. Phase one: stakeholder interviews, data audits, market analysis, opportunity mapping. Phase two: blueprints, playbooks, vendor evaluation. Phase three: pilots and proof points. Twelve to sixteen weeks. Mid-six-figure investment.</p>
+            
+            <p>The slides were polished. The framework was sound. The credentials were impeccable.</p>
+            
+            <p>And the CEO's face told me everything. He was watching a team who didn't know his business explain how they'd spend four months learning it.</p>
+            
+            <p>The consultancy wasn't incompetent. They were applying a methodology built for a different situation. Large corporates with fragmented leadership and unclear priorities. For a scale-up where the exec team had been in the business for years and already knew exactly where the problems were, it was expensive misdirection.</p>
+            
+            <p>I call this <strong>Calibration Debt</strong>: the accumulated cost of applying generic frameworks to specific situations that don't need them.</p>
+            
+            <h2>Four Ways Discovery Goes Wrong</h2>
+            
+            <h3>Learning Tax</h3>
+            <p>The consultancy is using your engagement to learn your industry. You're funding their education.</p>
+            
+            <h3>Framework Forcing</h3>
+            <p>The methodology works, just not for you. It's designed for enterprises with fragmented ownership. Applied to a tight leadership team with clear priorities, it creates friction rather than clarity.</p>
+            
+            <h3>Deck Building</h3>
+            <p>The discovery phase becomes self-justifying. Weeks of workshops produce a document that tells you what you already knew, packaged in the consultancy's visual language. The output is a deck. The outcome is delay.</p>
+            
+            <h3>Investor Theatre</h3>
+            <p>The engagement isn't commissioned to learn anything, it's commissioned to demonstrate rigour. The PE backer wants visible proof that transformation is being "taken seriously." The consultancy delivers exactly that: a credible process, impressive credentials, defensible methodology. But the output serves the investor narrative, not the operational reality.</p>
+            
+            <p>None of this is malicious. It's structural. Consultancies sell methodologies because methodologies scale. That's a sensible business model. It's just not always what you need.</p>
+            
+            <h2>Shortcuts Can Provide Outcomes</h2>
+            
+            <p>The more intimately you know your business, the less value discovery provides.</p>
+            
+            <p>Most scale-ups I work with don't need someone to tell them what's broken. They've known for months. What they need is someone who can move quickly from diagnosis to action, without the intermediate step of building a deck to prove the obvious.</p>
+            
+            <p>But that's not what gets sold. Because "we'll validate your assumptions in a day and start executing in week two" doesn't sound as rigorous as "we'll conduct a comprehensive twelve-week diagnostic." One sounds like a shortcut. The other sounds like due diligence.</p>
+            
+            <p>The irony is that the shortcut often produces better outcomes. You learn more by starting and adjusting than by researching and planning.</p>
+            
+            <h2>When Discovery Actually Matters</h2>
+            
+            <p>I'm not against discovery. There are situations where a structured diagnostic is exactly right.</p>
+            
+            <p>When a business genuinely doesn't know what's wrong. When there's disagreement at leadership level about priorities. When the problem is political as much as operational and you need external validation to break a deadlock.</p>
+            
+            <p>There's also a question of fit. Some consultancies are exceptional at due diligence and transaction advisory – built to help PE firms evaluate acquisitions and validate investment theses. That's valuable. But it's different from operational transformation. The skills that make someone brilliant at assessing a business from the outside don't automatically translate to changing it from the inside.</p>
+            
+            <p>If your need is execution, not evaluation, make sure you're buying the right thing.</p>
+            
+            <h2>What I Got Wrong</h2>
+            
+            <p>I've been on the wrong side of this too.</p>
+            
+            <p>Early in my career, I ran discovery phases because that's what you did. It felt rigorous. It felt professional. And frankly, it bought time to figure out what I was actually dealing with.</p>
+            
+            <p>But I noticed that the best outcomes came from engagements where we skipped the theatre and got to work. Where the client said "we know what's wrong, we just need help fixing it" and we trusted that they meant it.</p>
+            
+            <p>The discovery deck would have been the same. But we'd have lost eight weeks producing it.</p>
+            
+            <p>Now, when a client tells me they already know the problem, I believe them. We spend Day One validating that assumption, not eight weeks proving it.</p>
+            
+            <h2>The Question to Ask</h2>
+            
+            <p>If you're weighing up a consultancy engagement, the question isn't "do they have a good methodology?" It's "is their methodology calibrated to where we actually are?"</p>
+            
+            <p>If you're being sold a twelve-week discovery phase and you already know the problem, that's a signal. You're not buying insight. You're buying their learning curve.</p>
+            
+            <p>If you already have a strategy and clear goals, you don't need another strategy. You need someone who can validate quickly, move to execution, and stay close to the work until it's done.</p>
+            
+            <div class="article-cta">
+                <p class="article-cta__text">That's what I do. If it sounds like what you need, let's talk.</p>
+                <a href="/#contact" class="article-cta__link">
+                    Get in touch
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                    <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                </svg>
+                <span class="footer__brand-text">Centre Channel Ltd</span>
+            </div>
+            
+            <div class="footer__links">
+                <a href="/about">About</a>
+                <a href="/services">Services</a>
+                <a href="/#contact">Contact</a>
+                <a href="https://www.linkedin.com/in/markleach/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        const hamburger = document.getElementById('navHamburger');
+        const mobileMenu = document.getElementById('navMobile');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
