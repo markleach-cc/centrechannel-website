@@ -374,14 +374,6 @@
             margin: 0 auto;
         }
         
-        .hero__bridge {
-            font-family: var(--font-display);
-            font-size: var(--text-lg);
-            font-style: italic;
-            color: var(--brass);
-            margin-top: var(--space-5);
-        }
-        
         /* Waveform graphic */
         .waveform {
             margin: var(--space-8) auto;
@@ -703,6 +695,335 @@
             color: var(--brass);
         }
         
+        /* =============================================
+           NOW PLAYING WIDGET
+        ============================================= */
+        
+        .now-playing-widget {
+            background: var(--deep-black);
+            border-radius: 8px;
+            padding: 24px;
+            width: 100%;
+            max-width: 280px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--charcoal);
+        }
+
+        .now-playing-widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(184, 151, 106, 0.03) 0%,
+                transparent 50%,
+                rgba(0, 0, 0, 0.2) 100%
+            );
+            pointer-events: none;
+        }
+
+        .now-playing-widget .widget-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .now-playing-widget .widget-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .now-playing-widget .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .now-playing-widget .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--brass);
+            border-radius: 50%;
+            animation: np-pulse 2s ease-in-out infinite;
+        }
+
+        .now-playing-widget.last-played .status-dot {
+            animation: none;
+            opacity: 0.5;
+        }
+
+        @keyframes np-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
+        }
+
+        .now-playing-widget .status-text {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--brass);
+            font-weight: 500;
+        }
+
+        .now-playing-widget .album-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .now-playing-widget .album-art {
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--charcoal);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(184, 151, 106, 0.15);
+        }
+
+        .now-playing-widget .album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease, filter 0.4s ease;
+        }
+
+        .now-playing-widget:hover .album-art img {
+            transform: scale(1.03);
+            filter: brightness(0.85);
+        }
+
+        .now-playing-widget.last-played .album-art::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.3);
+        }
+
+        .now-playing-widget .equalizer {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 28px;
+            padding: 6px 12px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+        }
+
+        .now-playing-widget.last-played .equalizer {
+            display: none;
+        }
+
+        .now-playing-widget .eq-bar {
+            width: 3px;
+            background: linear-gradient(to top, var(--brass-dark), var(--brass), var(--brass-light));
+            border-radius: 2px;
+            transform-origin: bottom;
+        }
+
+        .now-playing-widget .eq-bar:nth-child(1) { animation: eq1 0.8s ease-in-out infinite; }
+        .now-playing-widget .eq-bar:nth-child(2) { animation: eq2 0.6s ease-in-out infinite 0.1s; }
+        .now-playing-widget .eq-bar:nth-child(3) { animation: eq3 0.7s ease-in-out infinite 0.2s; }
+        .now-playing-widget .eq-bar:nth-child(4) { animation: eq4 0.5s ease-in-out infinite 0.15s; }
+        .now-playing-widget .eq-bar:nth-child(5) { animation: eq5 0.9s ease-in-out infinite 0.05s; }
+
+        @keyframes eq1 { 0%, 100% { height: 6px; } 50% { height: 20px; } }
+        @keyframes eq2 { 0%, 100% { height: 14px; } 50% { height: 8px; } }
+        @keyframes eq3 { 0%, 100% { height: 10px; } 50% { height: 24px; } }
+        @keyframes eq4 { 0%, 100% { height: 18px; } 50% { height: 5px; } }
+        @keyframes eq5 { 0%, 100% { height: 8px; } 50% { height: 16px; } }
+
+        .now-playing-widget .track-info {
+            text-align: center;
+        }
+
+        .now-playing-widget .track-name {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 500;
+            color: var(--cream);
+            line-height: 1.2;
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .now-playing-widget .track-artist {
+            font-size: var(--text-sm);
+            color: rgba(245, 242, 235, 0.6);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .now-playing-widget .spotify-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(184, 151, 106, 0.1);
+            text-decoration: none;
+            color: var(--brass);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            opacity: 0.7;
+            transition: opacity var(--transition-fast);
+        }
+
+        .now-playing-widget .spotify-link:hover {
+            opacity: 1;
+        }
+
+        .now-playing-widget.loading .album-art {
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Signal section with sidebar layout */
+        .signal__grid {
+            display: grid;
+            gap: var(--space-8);
+            align-items: start;
+        }
+
+        @media (min-width: 900px) {
+            .signal__grid {
+                grid-template-columns: 1fr 280px;
+                gap: var(--space-9);
+            }
+        }
+
+        .signal__sidebar {
+            position: sticky;
+            top: 120px;
+        }
+
+        @media (max-width: 899px) {
+            .signal__sidebar {
+                display: flex;
+                justify-content: center;
+                margin-top: var(--space-6);
+            }
+        }
+
+        /* Compact widget for footer */
+        .now-playing-compact {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--deep-black);
+            padding: 12px 16px;
+            border-radius: 6px;
+            border: 1px solid var(--charcoal);
+            max-width: 240px;
+        }
+
+        .now-playing-compact .compact-art {
+            width: 44px;
+            height: 44px;
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: var(--charcoal);
+        }
+
+        .now-playing-compact .compact-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .now-playing-compact .compact-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .now-playing-compact .compact-name {
+            font-family: var(--font-display);
+            font-size: var(--text-sm);
+            color: var(--cream);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 1.2;
+        }
+
+        .now-playing-compact .compact-artist {
+            font-size: var(--text-xs);
+            color: rgba(245, 242, 235, 0.5);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .now-playing-compact .mini-eq {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .now-playing-compact .mini-eq .eq-bar {
+            width: 2px;
+            background: linear-gradient(to top, var(--brass-dark), var(--brass));
+            border-radius: 1px;
+        }
+
+        .now-playing-compact .mini-eq .eq-bar:nth-child(1) { animation: meq1 0.8s ease-in-out infinite; }
+        .now-playing-compact .mini-eq .eq-bar:nth-child(2) { animation: meq2 0.6s ease-in-out infinite 0.1s; }
+        .now-playing-compact .mini-eq .eq-bar:nth-child(3) { animation: meq3 0.7s ease-in-out infinite 0.2s; }
+
+        @keyframes meq1 { 0%, 100% { height: 4px; } 50% { height: 14px; } }
+        @keyframes meq2 { 0%, 100% { height: 10px; } 50% { height: 6px; } }
+        @keyframes meq3 { 0%, 100% { height: 6px; } 50% { height: 12px; } }
+
+        .now-playing-compact.last-played .mini-eq {
+            display: none;
+        }
+
+        /* Updated footer layout */
+        @media (min-width: 768px) {
+            .footer__inner {
+                display: grid;
+                grid-template-columns: auto 1fr auto auto;
+                gap: var(--space-6);
+                align-items: center;
+            }
+            
+            .footer__links {
+                justify-self: center;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .now-playing-compact {
+                margin: 0 auto;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 767px) {
             h1 {
@@ -798,7 +1119,6 @@
                 <p class="label hero__label">Why Centre Channel</p>
                 <h1 class="hero__title">Find the <span class="emphasis">signal.</span></h1>
                 <p class="hero__subtitle">In audio engineering, the centre channel carries the dialogue. Everything else is atmosphere.</p>
-                <p class="hero__bridge">That's how I work.</p>
                 
                 <!-- Waveform SVG -->
                 <div class="waveform">
@@ -888,11 +1208,52 @@
     <!-- The signal -->
     <section class="signal">
         <div class="container">
-            <div class="signal__content">
-                <h2>I find the centre channel.</h2>
-                <p>The signal that matters. The decision that's actually blocking growth. The conversation nobody's having. The number everyone's avoiding.</p>
-                <p>I've been the operator at <strong>Missguided</strong>, scaling the P&L through intense growth. I've been the agency, maturing and selling <strong>User Conversion</strong> to <strong>Brainlabs</strong>. I know where both sides hide their problems.</p>
-                <p>Now I advise high-growth retail brands through their most complex transformations. Filtering the noise. Finding the signal. Making sure you hear what actually matters.</p>
+            <div class="signal__grid">
+                <div class="signal__content">
+                    <h2>I find the centre channel.</h2>
+                    <p>The signal that matters. The decision that's actually blocking growth. The conversation nobody's having. The number everyone's avoiding.</p>
+                    <p>I've been the operator at <strong>Missguided</strong>, scaling the P&L through intense growth. I've been the agency, maturing and selling <strong>User Conversion</strong> to <strong>Brainlabs</strong>. I know where both sides hide their problems.</p>
+                    <p>Now I advise high-growth retail brands through their most complex transformations. Filtering the noise. Finding the signal. Making sure you hear what actually matters.</p>
+                </div>
+                
+                <div class="signal__sidebar">
+                    <!-- Now Playing Widget -->
+                    <div class="now-playing-widget" id="nowPlayingWidget">
+                        <div class="widget-inner">
+                            <div class="widget-header">
+                                <div class="status-indicator">
+                                    <div class="status-dot"></div>
+                                    <span class="status-text">Loading...</span>
+                                </div>
+                            </div>
+                            
+                            <div class="album-container">
+                                <div class="album-art">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%232a2a2a' width='100' height='100'/%3E%3C/svg%3E" alt="Album Art" id="albumArt">
+                                </div>
+                                <div class="equalizer" id="equalizer">
+                                    <div class="eq-bar"></div>
+                                    <div class="eq-bar"></div>
+                                    <div class="eq-bar"></div>
+                                    <div class="eq-bar"></div>
+                                    <div class="eq-bar"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="track-info">
+                                <div class="track-name" id="trackName">—</div>
+                                <div class="track-artist" id="trackArtist">—</div>
+                            </div>
+                            
+                            <a href="#" class="spotify-link" id="spotifyLink" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+                                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                                </svg>
+                                Listen on Spotify
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -945,14 +1306,30 @@
                 <a href="https://www.linkedin.com/in/markleach/" target="_blank" rel="noopener">LinkedIn</a>
             </div>
             
+            <!-- Compact Now Playing -->
+            <div class="now-playing-compact" id="nowPlayingCompact">
+                <div class="compact-art">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%232a2a2a' width='100' height='100'/%3E%3C/svg%3E" alt="" id="compactArt">
+                </div>
+                <div class="compact-info">
+                    <div class="compact-name" id="compactName">—</div>
+                    <div class="compact-artist" id="compactArtist">—</div>
+                </div>
+                <div class="mini-eq">
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                </div>
+            </div>
+            
             <p class="footer__legal">
-                <a href="mailto:mark@centrechannel.com">mark@centrechannel.com</a>
+                <a href="/cdn-cgi/l/email-protection#9df0fceff6ddfef8f3e9eff8fef5fcf3f3f8f1b3fef2f0"><span class="__cf_email__" data-cfemail="85e8e4f7eec5e6e0ebf1f7e0e6ede4ebebe0e9abe6eae8">[email&#160;protected]</span></a>
             </p>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -973,12 +1350,113 @@
         
         // Close menu when clicking a link
         const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            });
-        });
-    </script>
-</body>
-</html>
+        
+        // =============================================
+        // NOW PLAYING WIDGET
+        // =============================================
+        (function() {
+            const widget = document.getElementById('nowPlayingWidget');
+            const compact = document.getElementById('nowPlayingCompact');
+            const statusText = widget?.querySelector('.status-text');
+            const albumArt = document.getElementById('albumArt');
+            const trackName = document.getElementById('trackName');
+            const trackArtist = document.getElementById('trackArtist');
+            const spotifyLink = document.getElementById('spotifyLink');
+            const equalizer = document.getElementById('equalizer');
+            
+            const compactArt = document.getElementById('compactArt');
+            const compactName = document.getElementById('compactName');
+            const compactArtist = document.getElementById('compactArtist');
+
+            const defaultAlbumArt = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%232a2a2a' width='100' height='100'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='%23b8976a' font-family='sans-serif' font-size='10'%3ENo Art%3C/text%3E%3C/svg%3E";
+
+            async function fetchNowPlaying() {
+                if (widget) widget.classList.add('loading');
+                
+                try {
+                    const response = await fetch('/.netlify/functions/now-playing');
+                    const data = await response.json();
+
+                    if (widget) widget.classList.remove('loading');
+
+                    if (data.error || !data.track) {
+                        if (widget) {
+                            widget.classList.add('error');
+                            statusText.textContent = 'Offline';
+                            trackName.textContent = 'Nothing playing';
+                            trackArtist.textContent = '—';
+                            albumArt.src = defaultAlbumArt;
+                            spotifyLink.style.display = 'none';
+                            equalizer.style.display = 'none';
+                        }
+                        if (compact) {
+                            compact.classList.add('last-played');
+                            compactName.textContent = 'Offline';
+                            compactArtist.textContent = '—';
+                            compactArt.src = defaultAlbumArt;
+                        }
+                        return;
+                    }
+
+                    const { isPlaying, track } = data;
+
+                    // Update main widget
+                    if (widget) {
+                        if (isPlaying) {
+                            widget.classList.remove('last-played');
+                            statusText.textContent = 'Now Playing';
+                        } else {
+                            widget.classList.add('last-played');
+                            statusText.textContent = 'Last Played';
+                        }
+
+                        trackName.textContent = track.name || 'Unknown Track';
+                        trackArtist.textContent = track.artist || 'Unknown Artist';
+                        albumArt.src = track.image || defaultAlbumArt;
+                        albumArt.alt = `${track.album || 'Album'} cover`;
+
+                        if (track.url) {
+                            spotifyLink.href = track.url;
+                            spotifyLink.style.display = 'flex';
+                        } else {
+                            spotifyLink.style.display = 'none';
+                        }
+                    }
+
+                    // Update compact widget
+                    if (compact) {
+                        if (isPlaying) {
+                            compact.classList.remove('last-played');
+                        } else {
+                            compact.classList.add('last-played');
+                        }
+                        
+                        compactName.textContent = track.name || 'Unknown';
+                        compactArtist.textContent = track.artist || 'Unknown';
+                        compactArt.src = track.image || defaultAlbumArt;
+                    }
+
+                } catch (error) {
+                    console.error('Error fetching now playing:', error);
+                    if (widget) {
+                        widget.classList.remove('loading');
+                        widget.classList.add('error', 'last-played');
+                        statusText.textContent = 'Offline';
+                        trackName.textContent = 'Unable to load';
+                        trackArtist.textContent = '—';
+                    }
+                    if (compact) {
+                        compact.classList.add('last-played');
+                        compactName.textContent = 'Offline';
+                        compactArtist.textContent = '—';
+                    }
+                }
+            }
+
+            // Initial fetch
+            fetchNowPlaying();
+
+            // Refresh every 30 seconds
+            setInterval(fetchNowPlaying, 30000);
+        })();
+       
