@@ -1,0 +1,8 @@
+# Netlify configuration for Centre Channel
+
+# Auto-generate sitemap on each deploy
+[[plugins]]
+  package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+    baseUrl = "https://centrechannel.com"
