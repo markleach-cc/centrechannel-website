@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0a">
     <title>Mark Leach | Independent eCommerce Director & Strategic Fixer | Centre Channel</title>
     <meta name="description" content="I fix stalled growth and de-risk replatforming for £20M+ fashion, beauty and lifestyle brands. Ex-Missguided & Brainlabs. Independent eCommerce Director.">
     
@@ -259,6 +260,48 @@
         
         .nav__cta:hover {
             color: var(--brass-light);
+        }
+        
+        /* Availability Indicator */
+        .availability {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(184, 151, 106, 0.2);
+            border-radius: 20px;
+            font-size: 11px;
+            letter-spacing: 0.03em;
+            color: rgba(245, 242, 235, 0.7);
+        }
+
+        @media (min-width: 768px) {
+            .availability {
+                display: inline-flex;
+            }
+        }
+
+        .availability__light {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(184, 151, 106, 0.3);
+        }
+
+        .availability[data-status="available"] .availability__light {
+            background: #4ade80;
+            box-shadow: 0 0 6px rgba(74, 222, 128, 0.5);
+        }
+
+        .availability[data-status="limited"] .availability__light {
+            background: #fbbf24;
+            box-shadow: 0 0 6px rgba(251, 191, 36, 0.5);
+        }
+
+        .availability[data-status="booked"] .availability__light {
+            background: #f87171;
+            box-shadow: 0 0 6px rgba(248, 113, 113, 0.5);
         }
         
         @media (min-width: 768px) {
@@ -1321,7 +1364,7 @@
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="container nav__inner">
-            <a href="/" class="nav__logo">
+            <a href="/" class="nav__logo" aria-label="Centre Channel - Home">
                 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
                     <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
@@ -1338,6 +1381,11 @@
                 <li><a href="/insights">Insights</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            
+            <div class="availability" id="availability">
+                <span class="availability__light"></span>
+                <span class="availability__text"></span>
+            </div>
             
             <a href="#contact" class="nav__cta">Let's Talk</a>
             
@@ -1649,13 +1697,13 @@
         </div>
         
         <p class="footer__legal">
-            Company No. 15020540 · <a href="/privacy">Privacy</a> · <a href="mailto:mark@centrechannel.com">mark@centrechannel.com</a>
+            Company No. 15020540 · <a href="/privacy">Privacy</a> · <a href="/cdn-cgi/l/email-protection#a4c9c5d6cfe4c7c1cad0d6c1c7ccc5cacac1c88ac7cbc9"><span class="__cf_email__" data-cfemail="90fdf1e2fbd0f3f5fee4e2f5f3f8f1fefef5fcbef3fffd">[email&#160;protected]</span></a>
         </p>
     </div>
 </footer>
 
     <!-- Scripts -->
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navigation scroll effect
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
@@ -1677,12 +1725,26 @@
         
         // Close menu when clicking a link
         const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
+       mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('active');
             });
         });
+    </script>
+    
+    <!-- Availability Indicator -->
+    <script>
+    fetch('/config/availability.json')
+        .then(r => r.json())
+        .then(d => {
+            const el = document.getElementById('availability');
+            if (el && d.status) {
+                el.setAttribute('data-status', d.status);
+                el.querySelector('.availability__text').textContent = d.message;
+            }
+        })
+        .catch(() => {});
     </script>
 </body>
 </html>
