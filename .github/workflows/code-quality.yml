@@ -1,0 +1,130 @@
+# .github/workflows/code-quality.yml
+#
+# Runs code quality checks on every push and pull request
+# - HTML validation (catches missing tags, malformed markup)
+# - JavaScript linting (catches syntax errors, undefined variables)
+
+name: Code Quality
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  html-validation:
+    name: Validate HTML
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install html-validate
+        run: npm install -g html-validate
+      
+      - name: Create HTML validation config
+        run: |
+          cat > .htmlvalidate.json << 'EOF'
+          {
+            "extends": ["html-validate:recommended"],
+            "rules": {
+              "no-inline-style": "off",
+              "no-trailing-whitespace": "off", 
+              "attr-quotes": "off",
+              "element-permitted-content": "warn",
+              "no-implicit-close": "error",
+              "close-order": "error",
+              "void-style": "off",
+              "doctype-style": "off",
+              "long-title": "off",
+              "prefer-native-element": "off",
+              "require-sri": "off"
+            }
+          }
+          EOF
+      
+      - name: Validate HTML files
+        run: |
+          # Find all HTML files and validate them
+          # Exclude node_modules and any build directories
+          find . -name "*.html" \
+            -not -path "./node_modules/*" \
+            -not -path "./.git/*" \
+            -exec echo "Validating: {}" \; \
+            -exec html-validate {} \;
+
+  javascript-lint:
+    name: Lint JavaScript
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install ESLint
+        run: npm install -g eslint
+      
+      - name: Create ESLint config
+        run: |
+          cat > .eslintrc.json << 'EOF'
+          {
+            "env": {
+              "node": true,
+              "es2021": true,
+              "browser": true
+            },
+            "parserOptions": {
+              "ecmaVersion": "latest",
+              "sourceType": "module"
+            },
+            "rules": {
+              "no-undef": "error",
+              "no-unused-vars": "warn",
+              "no-unreachable": "error",
+              "no-constant-condition": "error",
+              "no-dupe-keys": "error",
+              "no-duplicate-case": "error",
+              "no-empty": "warn",
+              "no-extra-semi": "warn",
+              "no-func-assign": "error",
+              "no-invalid-regexp": "error",
+              "no-irregular-whitespace": "error",
+              "no-sparse-arrays": "error",
+              "valid-typeof": "error",
+              "curly": "warn",
+              "eqeqeq": "warn",
+              "no-eval": "error",
+              "no-implied-eval": "error"
+            },
+            "globals": {
+              "fetch": "readonly",
+              "console": "readonly",
+              "document": "readonly",
+              "window": "readonly",
+              "setInterval": "readonly",
+              "exports": "readonly",
+              "process": "readonly"
+            }
+          }
+          EOF
+      
+      - name: Lint Netlify functions
+        run: |
+          if [ -d "netlify/functions" ]; then
+            eslint netlify/functions/**/*.js --no-eslintrc --config .eslintrc.json
+          else
+            echo "No netlify/functions directory found, skipping"
+          fi
+        continue-on-error: false
