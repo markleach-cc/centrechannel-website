@@ -1,0 +1,27 @@
+# _headers
+#
+# Security headers for Centre Channel website
+# Place this file in the root of your repository
+#
+# These headers improve security and show technical competence
+# if anyone inspects your site's headers
+
+/*
+  # Prevent clickjacking
+  X-Frame-Options: DENY
+  
+  # Prevent MIME type sniffing
+  X-Content-Type-Options: nosniff
+  
+  # Enable XSS protection
+  X-XSS-Protection: 1; mode=block
+  
+  # Control referrer information
+  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # Permissions policy (disable unnecessary browser features)
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  
+  # Content Security Policy (adjust if you add new external services)
+  # Currently allows: Google Fonts, Last.fm API, Netlify functions
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://ws.audioscrobbler.com https://*.netlify.app;
