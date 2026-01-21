@@ -74,7 +74,7 @@ jobs:
           node-version: '20'
       
       - name: Install ESLint
-        run: npm install -g eslint
+        run: npm install eslint@8
       
       - name: Create ESLint config
         run: |
@@ -123,7 +123,7 @@ jobs:
       - name: Lint Netlify functions
         run: |
           if [ -d "netlify/functions" ]; then
-            eslint netlify/functions/**/*.js --no-eslintrc --config .eslintrc.json
+            npx eslint netlify/functions/**/*.js
           else
             echo "No netlify/functions directory found, skipping"
           fi
