@@ -1,0 +1,24 @@
+# Redirects from old Squarespace URLs to new site structure
+# Format: /old-path /new-path status-code
+
+# Homepage
+/home / 301
+
+# Contact (now a section on homepage)
+/contact /#contact 301
+
+# Intro page
+/intro /about 301
+
+# Service page
+/fractional-ecommerce-director /services 301
+
+# Clients section
+/clients /results 301
+/clients/network /results 301
+/clients/travel-counsellors /results 301
+/clients/abbott-lyon /dossiers/abbott-lyon-2025-cc 301
+/clients/arne /dossiers/arne-2024-cc 301
+
+# Renamed article
+/insights/shopify-migration-risks /insights/replatforming-governance 301
